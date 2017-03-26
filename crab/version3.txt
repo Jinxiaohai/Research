@@ -1,0 +1,58 @@
+CRAB 3.0alpha
+
+November 17, 1997
+
+Scott Pratt
+National Superconducting Cyclotron Laboratory
+Michigan State University, East Lansing, MI  48824
+pratt@nscl.msu.edu (517) 333-6438
+
+CRAB stands for ``Correlation After Burner''. It is a set of codes used to
+generate correlation codes from semi-classical transport codes. It reads files
+of phase space points, which describe the final momentum and point of last
+interaction of generated particles. From this information, along with knowledge
+of the impact parameters used for the transport-code runs, CRAB will generate
+correlation functions which account for impact-parameter averaging,
+experimental acceptances, experimental resolution and kinematic cuts. 
+
+CRAB can implement full quantum corrections for Coulomb interactions between
+the two particles as well as strong interactions for an arbitrary number of
+partial waves. There is also an option to include interactions of a
+Breit-Wigner form.  CRAB does not account for strong interactions that mix
+partial waves or for interactions with third bodies, e.g. interacting with the
+residue of a compound nucleus.
+
+Version 3.0 is completely rewritten in C++, but shares a great deal of
+philosophy with the previous FORTRAN version. Differences with previous
+versions are summarized below:
+
+1. Different momentum binnings can be incorporated in the same run. For
+example, if one wishes to perform cuts in pt and rapidity at the same time you
+perform calculations for Qinv, it is straight-forward to implement. One can
+perform an arbitrary number of binnings in the same run.
+
+2. The mesh used for calculating strong-interaction corrections to partial
+waves can be as fine as one wishes and is not tied to the resolution of the
+meshes used for binning.
+
+3. Three-dimensional binnings can be incorporated.
+
+4. It is easier to change the interaction between particles as parameters
+that define the interaction reside in one short file.
+
+5. Phase space pt.s can be read from a file which contains information about
+all emitted particles, even those that are not considered in the correlation
+analyses. One can set which kinds of particles are used for the analyses. For
+instance, one may wish to include phase space pt.s for pi^+, pi^- and
+pi^0 for greater statistics, even though only negative pions are truly being
+considered. The default input format is OSCAR 1997A.
+
+6. Estimates of statistical errors accompany the calculation.
+
+Although previous versions were easy to use, they were not easy to modify. The
+new version was designed with the intention of making it easy for the user to
+modify rather than just making it easy to run.
+
+See the file 'updates.txt' for information about additions and error fixes. A
+detailed description of the code and directions can be found in the file
+'documentation/crab.ps'.
