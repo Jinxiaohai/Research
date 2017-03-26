@@ -1,0 +1,173 @@
+CPP=g++ -bind_at_load
+OPT=${CFLAGS}
+#
+# You shouldn't have to mess with much below here
+CORALSRC=../src
+CORALINC=../include
+HCFILES=../include/arraycalc.cc ../include/arrays.cc ../include/arrays.h ../include/charray.cc ../include/threed.cc ../include/ylmarray.cc ../include/sfit_minuit.cc ../include/sfit_minuit.h ../include/sfit_minuit_3dgaussian.cc ../include/sfit_minuit_blast.cc ../include/sfit_minuit_GX1d.cc ../include/sfit.cc ../include/sfit.h ../include/sfit_3dgaussian.cc ../include/sfit_blast.cc ../include/sfit_GX1d.cc ../include/cfcalc.cc ../include/cfcalc.h ../include/coral.cc ../include/coral.h ../include/kernel.cc ../include/kernel.h ../include/source2CF.cc ../include/source2CF.h ../include/sourcecalc.cc ../include/sourcecalc.h ../include/sourcecalc_blast.cc ../include/sourcecalc_ellipticblast.cc ../include/sourcecalc_gauss.cc ../include/sourcecalc_GX1d.cc ../include/sourcecalc_OSCAR.cc ../include/complextest.cc ../include/gslmatrix.cc ../include/gslmatrix.h ../include/realtest.cc ../include/misc.cc ../include/misc.h ../include/parametermap.cc ../include/parametermap.h ../include/random.cc ../include/random.h ../include/bess.cc ../include/chcalc.cc ../include/coulwave.cc ../include/sf.cc ../include/sf.h ../include/ylm.cc ../include/wavefunction.cc ../include/wavefunction.h ../include/liwavefunction.h ../include/nn_phaseshift_maker.cc ../include/nn_phaseshiftdat.cc ../include/pp_phaseshift_maker.cc ../include/pp_phaseshift_makerb.cc ../include/pp_phaseshiftdat.cc ../include/pipi_phaseshifts.cc ../include/pk_phaseshift_maker.cc ../include/pk_phaseshiftdat.cc ../include/ppi_phaseshift_maker.cc ../include/ppi_phaseshiftdat.cc ../include/reid93.cc ../include/wf_generic.cc ../include/wf_kpluspiminus.cc ../include/wf_lambdalambda.cc ../include/wf_lambdalambda_antiparspin.cc ../include/wf_lambdalambda_parspin.cc ../include/wf_nn.cc ../include/wf_pipluspiminus.cc ../include/wf_pipluspiplus.cc ../include/wf_pkplus.cc ../include/wf_plambda.cc ../include/wf_pn.cc ../include/wf_pp.cc ../include/wf_pp_old.cc ../include/wf_ppiplus.cc ../include/wf_Xipi.cc ../include/partwave.cc ../include/planewave.cc ../include/wfcommon.cc
+#
+libcoral.a : coral.o
+	ar -ru libcoral.a coral.o
+coral.o : ${CORALINC}/coral.cc ${HCFILES}
+	${CPP} -c -FPIC -I${CORALINC} ${OPT} -o coral.o ${CORALINC}/coral.cc
+clean :
+	rm -f *.o *~
+#
+../include/arraycalc.cc : ../src/Arrays/arraycalc.cc
+	cp ../src/Arrays/arraycalc.cc ../include/
+../include/arrays.cc : ../src/Arrays/arrays.cc
+	cp ../src/Arrays/arrays.cc ../include/
+../include/arrays.h : ../src/Arrays/arrays.h
+	cp ../src/Arrays/arrays.h ../include/
+../include/charray.cc : ../src/Arrays/charray.cc
+	cp ../src/Arrays/charray.cc ../include/
+../include/threed.cc : ../src/Arrays/threed.cc
+	cp ../src/Arrays/threed.cc ../include/
+../include/ylmarray.cc : ../src/Arrays/ylmarray.cc
+	cp ../src/Arrays/ylmarray.cc ../include/
+../include/sfit_minuit.cc : ../src/CF2Source/minuitstuff/sfit_minuit.cc
+	cp ../src/CF2Source/minuitstuff/sfit_minuit.cc ../include/
+../include/sfit_minuit.h : ../src/CF2Source/minuitstuff/sfit_minuit.h
+	cp ../src/CF2Source/minuitstuff/sfit_minuit.h ../include/
+../include/sfit_minuit_3dgaussian.cc : ../src/CF2Source/minuitstuff/sfit_minuit_3dgaussian.cc
+	cp ../src/CF2Source/minuitstuff/sfit_minuit_3dgaussian.cc ../include/
+../include/sfit_minuit_blast.cc : ../src/CF2Source/minuitstuff/sfit_minuit_blast.cc
+	cp ../src/CF2Source/minuitstuff/sfit_minuit_blast.cc ../include/
+../include/sfit_minuit_GX1d.cc : ../src/CF2Source/minuitstuff/sfit_minuit_GX1d.cc
+	cp ../src/CF2Source/minuitstuff/sfit_minuit_GX1d.cc ../include/
+../include/sfit.cc : ../src/CF2Source/sfit.cc
+	cp ../src/CF2Source/sfit.cc ../include/
+../include/sfit.h : ../src/CF2Source/sfit.h
+	cp ../src/CF2Source/sfit.h ../include/
+../include/sfit_3dgaussian.cc : ../src/CF2Source/sfit_3dgaussian.cc
+	cp ../src/CF2Source/sfit_3dgaussian.cc ../include/
+../include/sfit_blast.cc : ../src/CF2Source/sfit_blast.cc
+	cp ../src/CF2Source/sfit_blast.cc ../include/
+../include/sfit_GX1d.cc : ../src/CF2Source/sfit_GX1d.cc
+	cp ../src/CF2Source/sfit_GX1d.cc ../include/
+../include/cfcalc.cc : ../src/CFCalc/cfcalc.cc
+	cp ../src/CFCalc/cfcalc.cc ../include/
+../include/cfcalc.h : ../src/CFCalc/cfcalc.h
+	cp ../src/CFCalc/cfcalc.h ../include/
+../include/coral.cc : ../src/coral.cc
+	cp ../src/coral.cc ../include/
+../include/coral.h : ../src/coral.h
+	cp ../src/coral.h ../include/
+../include/kernel.cc : ../src/Kernel/kernel.cc
+	cp ../src/Kernel/kernel.cc ../include/
+../include/kernel.h : ../src/Kernel/kernel.h
+	cp ../src/Kernel/kernel.h ../include/
+../include/source2CF.cc : ../src/Source2CF/source2CF.cc
+	cp ../src/Source2CF/source2CF.cc ../include/
+../include/source2CF.h : ../src/Source2CF/source2CF.h
+	cp ../src/Source2CF/source2CF.h ../include/
+../include/sourcecalc.cc : ../src/SourceCalc/sourcecalc.cc
+	cp ../src/SourceCalc/sourcecalc.cc ../include/
+../include/sourcecalc.h : ../src/SourceCalc/sourcecalc.h
+	cp ../src/SourceCalc/sourcecalc.h ../include/
+../include/sourcecalc_blast.cc : ../src/SourceCalc/sourcecalc_blast.cc
+	cp ../src/SourceCalc/sourcecalc_blast.cc ../include/
+../include/sourcecalc_ellipticblast.cc : ../src/SourceCalc/sourcecalc_ellipticblast.cc
+	cp ../src/SourceCalc/sourcecalc_ellipticblast.cc ../include/
+../include/sourcecalc_gauss.cc : ../src/SourceCalc/sourcecalc_gauss.cc
+	cp ../src/SourceCalc/sourcecalc_gauss.cc ../include/
+../include/sourcecalc_GX1d.cc : ../src/SourceCalc/sourcecalc_GX1d.cc
+	cp ../src/SourceCalc/sourcecalc_GX1d.cc ../include/
+../include/sourcecalc_OSCAR.cc : ../src/SourceCalc/sourcecalc_OSCAR.cc
+	cp ../src/SourceCalc/sourcecalc_OSCAR.cc ../include/
+../include/complextest.cc : ../src/Utilities/GSLMatrix/complextest.cc
+	cp ../src/Utilities/GSLMatrix/complextest.cc ../include/
+../include/gslmatrix.cc : ../src/Utilities/GSLMatrix/gslmatrix.cc
+	cp ../src/Utilities/GSLMatrix/gslmatrix.cc ../include/
+../include/gslmatrix.h : ../src/Utilities/GSLMatrix/gslmatrix.h
+	cp ../src/Utilities/GSLMatrix/gslmatrix.h ../include/
+../include/realtest.cc : ../src/Utilities/GSLMatrix/realtest.cc
+	cp ../src/Utilities/GSLMatrix/realtest.cc ../include/
+../include/misc.cc : ../src/Utilities/Misc/misc.cc
+	cp ../src/Utilities/Misc/misc.cc ../include/
+../include/misc.h : ../src/Utilities/Misc/misc.h
+	cp ../src/Utilities/Misc/misc.h ../include/
+../include/parametermap.cc : ../src/Utilities/ParameterMap/parametermap.cc
+	cp ../src/Utilities/ParameterMap/parametermap.cc ../include/
+../include/parametermap.h : ../src/Utilities/ParameterMap/parametermap.h
+	cp ../src/Utilities/ParameterMap/parametermap.h ../include/
+../include/random.cc : ../src/Utilities/Random/random.cc
+	cp ../src/Utilities/Random/random.cc ../include/
+../include/random.h : ../src/Utilities/Random/random.h
+	cp ../src/Utilities/Random/random.h ../include/
+../include/bess.cc : ../src/Utilities/SpecialFunctions/Bessel/bess.cc
+	cp ../src/Utilities/SpecialFunctions/Bessel/bess.cc ../include/
+../include/chcalc.cc : ../src/Utilities/SpecialFunctions/CartesianHarmonics/chcalc.cc
+	cp ../src/Utilities/SpecialFunctions/CartesianHarmonics/chcalc.cc ../include/
+../include/coulwave.cc : ../src/Utilities/SpecialFunctions/CoulWave/coulwave.cc
+	cp ../src/Utilities/SpecialFunctions/CoulWave/coulwave.cc ../include/
+../include/sf.cc : ../src/Utilities/SpecialFunctions/sf.cc
+	cp ../src/Utilities/SpecialFunctions/sf.cc ../include/
+../include/sf.h : ../src/Utilities/SpecialFunctions/sf.h
+	cp ../src/Utilities/SpecialFunctions/sf.h ../include/
+../include/ylm.cc : ../src/Utilities/SpecialFunctions/Ylm/ylm.cc
+	cp ../src/Utilities/SpecialFunctions/Ylm/ylm.cc ../include/
+../include/wavefunction.cc : ../src/WaveFunctions/wavefunction.cc
+	cp ../src/WaveFunctions/wavefunction.cc ../include/
+../include/wavefunction.h : ../src/WaveFunctions/wavefunction.h
+	cp ../src/WaveFunctions/wavefunction.h ../include/
+../include/liwavefunction.h : ../src/WaveFunctions/wf/liwavefunction.h
+	cp ../src/WaveFunctions/wf/liwavefunction.h ../include/
+../include/nn_phaseshift_maker.cc : ../src/WaveFunctions/wf/phaseshifts/NN_phaseshifts/nn_phaseshift_maker.cc
+	cp ../src/WaveFunctions/wf/phaseshifts/NN_phaseshifts/nn_phaseshift_maker.cc ../include/
+../include/nn_phaseshiftdat.cc : ../src/WaveFunctions/wf/phaseshifts/NN_phaseshifts/nn_phaseshiftdat.cc
+	cp ../src/WaveFunctions/wf/phaseshifts/NN_phaseshifts/nn_phaseshiftdat.cc ../include/
+../include/pp_phaseshift_maker.cc : ../src/WaveFunctions/wf/phaseshifts/NN_phaseshifts/pp_phaseshift_maker.cc
+	cp ../src/WaveFunctions/wf/phaseshifts/NN_phaseshifts/pp_phaseshift_maker.cc ../include/
+../include/pp_phaseshift_makerb.cc : ../src/WaveFunctions/wf/phaseshifts/NN_phaseshifts/pp_phaseshift_makerb.cc
+	cp ../src/WaveFunctions/wf/phaseshifts/NN_phaseshifts/pp_phaseshift_makerb.cc ../include/
+../include/pp_phaseshiftdat.cc : ../src/WaveFunctions/wf/phaseshifts/NN_phaseshifts/pp_phaseshiftdat.cc
+	cp ../src/WaveFunctions/wf/phaseshifts/NN_phaseshifts/pp_phaseshiftdat.cc ../include/
+../include/pipi_phaseshifts.cc : ../src/WaveFunctions/wf/phaseshifts/pipi_phaseshifts/pipi_phaseshifts.cc
+	cp ../src/WaveFunctions/wf/phaseshifts/pipi_phaseshifts/pipi_phaseshifts.cc ../include/
+../include/pk_phaseshift_maker.cc : ../src/WaveFunctions/wf/phaseshifts/pk_phaseshifts/pk_phaseshift_maker.cc
+	cp ../src/WaveFunctions/wf/phaseshifts/pk_phaseshifts/pk_phaseshift_maker.cc ../include/
+../include/pk_phaseshiftdat.cc : ../src/WaveFunctions/wf/phaseshifts/pk_phaseshifts/pk_phaseshiftdat.cc
+	cp ../src/WaveFunctions/wf/phaseshifts/pk_phaseshifts/pk_phaseshiftdat.cc ../include/
+../include/ppi_phaseshift_maker.cc : ../src/WaveFunctions/wf/phaseshifts/ppi_phaseshifts/ppi_phaseshift_maker.cc
+	cp ../src/WaveFunctions/wf/phaseshifts/ppi_phaseshifts/ppi_phaseshift_maker.cc ../include/
+../include/ppi_phaseshiftdat.cc : ../src/WaveFunctions/wf/phaseshifts/ppi_phaseshifts/ppi_phaseshiftdat.cc
+	cp ../src/WaveFunctions/wf/phaseshifts/ppi_phaseshifts/ppi_phaseshiftdat.cc ../include/
+../include/reid93.cc : ../src/WaveFunctions/wf/reid93.cc
+	cp ../src/WaveFunctions/wf/reid93.cc ../include/
+../include/wf_generic.cc : ../src/WaveFunctions/wf/wf_generic.cc
+	cp ../src/WaveFunctions/wf/wf_generic.cc ../include/
+../include/wf_kpluspiminus.cc : ../src/WaveFunctions/wf/wf_kpluspiminus.cc
+	cp ../src/WaveFunctions/wf/wf_kpluspiminus.cc ../include/
+../include/wf_lambdalambda.cc : ../src/WaveFunctions/wf/wf_lambdalambda.cc
+	cp ../src/WaveFunctions/wf/wf_lambdalambda.cc ../include/
+../include/wf_lambdalambda_antiparspin.cc : ../src/WaveFunctions/wf/wf_lambdalambda_antiparspin.cc
+	cp ../src/WaveFunctions/wf/wf_lambdalambda_antiparspin.cc ../include/
+../include/wf_lambdalambda_parspin.cc : ../src/WaveFunctions/wf/wf_lambdalambda_parspin.cc
+	cp ../src/WaveFunctions/wf/wf_lambdalambda_parspin.cc ../include/
+../include/wf_nn.cc : ../src/WaveFunctions/wf/wf_nn.cc
+	cp ../src/WaveFunctions/wf/wf_nn.cc ../include/
+../include/wf_pipluspiminus.cc : ../src/WaveFunctions/wf/wf_pipluspiminus.cc
+	cp ../src/WaveFunctions/wf/wf_pipluspiminus.cc ../include/
+../include/wf_pipluspiplus.cc : ../src/WaveFunctions/wf/wf_pipluspiplus.cc
+	cp ../src/WaveFunctions/wf/wf_pipluspiplus.cc ../include/
+../include/wf_pkplus.cc : ../src/WaveFunctions/wf/wf_pkplus.cc
+	cp ../src/WaveFunctions/wf/wf_pkplus.cc ../include/
+../include/wf_plambda.cc : ../src/WaveFunctions/wf/wf_plambda.cc
+	cp ../src/WaveFunctions/wf/wf_plambda.cc ../include/
+../include/wf_pn.cc : ../src/WaveFunctions/wf/wf_pn.cc
+	cp ../src/WaveFunctions/wf/wf_pn.cc ../include/
+../include/wf_pp.cc : ../src/WaveFunctions/wf/wf_pp.cc
+	cp ../src/WaveFunctions/wf/wf_pp.cc ../include/
+../include/wf_pp_old.cc : ../src/WaveFunctions/wf/wf_pp_old.cc
+	cp ../src/WaveFunctions/wf/wf_pp_old.cc ../include/
+../include/wf_ppiplus.cc : ../src/WaveFunctions/wf/wf_ppiplus.cc
+	cp ../src/WaveFunctions/wf/wf_ppiplus.cc ../include/
+../include/wf_Xipi.cc : ../src/WaveFunctions/wf/wf_Xipi.cc
+	cp ../src/WaveFunctions/wf/wf_Xipi.cc ../include/
+../include/partwave.cc : ../src/WaveFunctions/wfcommon/partwave.cc
+	cp ../src/WaveFunctions/wfcommon/partwave.cc ../include/
+../include/planewave.cc : ../src/WaveFunctions/wfcommon/planewave.cc
+	cp ../src/WaveFunctions/wfcommon/planewave.cc ../include/
+../include/wfcommon.cc : ../src/WaveFunctions/wfcommon/wfcommon.cc
+	cp ../src/WaveFunctions/wfcommon/wfcommon.cc ../include/

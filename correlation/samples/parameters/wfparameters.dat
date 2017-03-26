@@ -1,0 +1,4 @@
+int NQMAX 20
+double DELQ 5
+double EPSILON 1.0
+int KLMAX 4

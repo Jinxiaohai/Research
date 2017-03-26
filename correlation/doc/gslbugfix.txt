@@ -1,0 +1,61 @@
+	From: 	  bjg@network-theory.co.uk
+	Subject: 	Re: [Bug-gsl] Error in Coulomb Wave Function Routines
+	Date: 	February 22, 2006 10:37:24 AM EST
+	To: 	  pratts@pa.msu.edu
+	Cc: 	  bug-gsl@gnu.org
+
+scott pratt writes:
+I ran into a problem with your routines for calculating F_L and G_L, the
+partial-wave solutions for the Coulomb problem. The functions are  
+discontinuous,
+as the functions flip signs for values of x~3.2 and x~5.8 in the  
+example below.
+
+The patch below should fix this problem, the sign was wrong when
+lambda_G != lambda_L.  Thanks for the bug report.
+
+-- 
+Brian Gough
+
+Network Theory Ltd,
+Publishing the GSL Manual - http://www.network-theory.com/gsl/manual/
+
+
+
+Index: coulomb.c
+===================================================================
+RCS file: /home/gsl-cvs/gsl/specfunc/coulomb.c,v
+retrieving revision 1.56
+diff -u -r1.56 coulomb.c
+--- coulomb.c	4 Aug 2005 13:08:28 -0000	1.56
++++ coulomb.c	22 Feb 2006 15:26:11 -0000
+@@ -1132,7 +1132,7 @@
+     double G_lam_min, Gp_lam_min;
+     double Fp_over_F_lam_F;
+     double Fp_over_F_lam_min;
+-    double F_sign_lam_F;
++    double F_sign_lam_F, F_sign_lam_min;
+     double P_lam_min, Q_lam_min;
+     double alpha;
+     double gamma;
+@@ -1150,7 +1150,7 @@
+
+     double err_amplify;
+
+-    F_lam_F  = SMALL;
++    F_lam_F  = F_sign_lam_F * SMALL;  /* unnormalized */
+     Fp_lam_F = Fp_over_F_lam_F * F_lam_F;
+
+     /* Backward recurrence to get F,Fp at lam_min */
+@@ -1165,7 +1165,10 @@
+     stat_CF2 = coulomb_CF2(lam_min, eta, x, &P_lam_min, &Q_lam_min, &CF2_count);
+     alpha = Fp_over_F_lam_min - P_lam_min;
+     gamma = alpha/Q_lam_min;
+-    F_lam_min  = F_sign_lam_F / sqrt(alpha*alpha/Q_lam_min + Q_lam_min);
++
++    F_sign_lam_min = GSL_SIGN(F_lam_min_unnorm) ;
++
++    F_lam_min  = F_sign_lam_min / sqrt(alpha*alpha/Q_lam_min + Q_lam_min);
+     Fp_lam_min = Fp_over_F_lam_min * F_lam_min;
+     G_lam_min  = gamma * F_lam_min;
+     Gp_lam_min = (P_lam_min * gamma - Q_lam_min) * F_lam_min;

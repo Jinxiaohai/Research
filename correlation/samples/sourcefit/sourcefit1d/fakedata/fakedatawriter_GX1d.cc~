@@ -1,0 +1,87 @@
+#include <cstdlib>
+#include <cmath>
+#include <cstdio>
+#include <iostream>
+#include <ctime>
+
+using namespace std;
+
+#include "coral.h"
+
+int main(){
+  CRandom *randy;
+  CCHArray *Cfake;
+  CCHArray *Ctheory;
+  CCHArray *Efake;
+  CCHArray *Sgx;
+  CSourceCalc_GX1D *scalc;
+  CWaveFunction *wf;
+  CKernel *kernel;
+  double R=5.0,X=10.0,lambdaG=0.0,lambdaX=0.7,a=5.0;
+  double error=0.05,chisquare,emag;
+  int lx=0,ly=0,lz=0,lxcalc=0,lycalc=0,lzcalc=0,iq,dlx=1,dly=1,dlz=1;
+  char pardirname[100];
+  sprintf(pardirname,"../parameters/pp\0");
+  randy=new CRandom(-time(NULL));
+
+  // Create Arrays
+  char apars_filename[120];
+  sprintf(apars_filename,"%s/aparsCH_source.dat\0",pardirname);
+  Sgx=new CCHArray(apars_filename);
+  sprintf(apars_filename,"%s/aparsCH_CF.dat\0",pardirname);
+  Cfake=new CCHArray(apars_filename);
+  Ctheory=new CCHArray(apars_filename);
+  Efake=new CCHArray(apars_filename);
+
+  char fakedatadirname[120];
+  sprintf(fakedatadirname,"GX1d/pp\0");
+  char fakeerrordirname[120];
+  sprintf(fakeerrordirname,"GX1d/pp_errors\0");
+
+  char wfparsfilename[120];
+  sprintf(wfparsfilename,"%s/kparameters.dat\0",pardirname);
+  char kdatadirname[200];
+  sprintf(kdatadirname,"../../kdata/pp\0");
+
+  kernel=new CKernel(wfparsfilename);
+  kernel->Read(kdatadirname);
+  //wf=new CWaveFunction_pp(wfparsfilename);
+  //kernel->Calc(wf);
+  //kernel->Write(kdatadirname);
+
+  scalc=new CSourceCalc_GX1D();
+  scalc->SetSPars(lambdaG,R,lambdaX,X,a);
+  scalc->CalcS(Sgx);
+  scalc->NormCheck(Sgx);
+  S2CF::s2c(Sgx,kernel,Ctheory);
+
+
+  // Make error matrix
+  if(Efake->GetXSYM()) dlx=2;
+  if(Efake->GetYSYM()) dly=2;
+  if(Efake->GetZSYM()) dlz=2;
+  int Lmax=Efake->GetLMAX();
+  for(iq=0;iq<Efake->GetNRADIAL();iq++){
+    for(lx=0;lx<2;lx+=dlx){
+      for(ly=0;ly<=Lmax-lx;ly+=dly){
+	for(lz=0;lz<=Lmax-lx-ly;lz+=dlz){
+	  emag=error/(iq+1.0);
+	  Cfake->SetElement(lx,ly,lz,iq,emag*randy->gauss()
+			    +Ctheory->GetElement(lx,ly,lz,iq));
+	  Efake->SetElement(lx,ly,lz,iq,emag);
+	}
+      }
+    }
+  }
+
+  chisquare=CFCalc::GetChiSquared(lxcalc,lycalc,lzcalc,Cfake,Efake,Ctheory);
+  printf("chisquare=%g\n",chisquare);
+  
+  // Write Arrays
+  Cfake->WriteAX(fakedatadirname);
+  Efake->WriteAX(fakeerrordirname);
+
+  return 0;
+  
+}
+

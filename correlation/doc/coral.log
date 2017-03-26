@@ -1,0 +1,311 @@
+This is pdfeTeXk, Version 3.141592-1.11b-2.1 (Web2C 7.5.2) (format=pdflatex 2004.9.29)  21 MAY 2006 11:30
+entering extended mode
+\write18 enabled.
+ %&-line parsing enabled.
+ (/usr/local/teTeX/share/texmf.tetex/web2c/cp8bit.tcx)
+**coral.tex
+(./coral.tex{/usr/local/teTeX/share/texmf.gwtex/pdftex/config/pdftex.cfg}
+LaTeX2e <2001/06/01>
+Babel <v3.7h> and hyphenation patterns for american, french, german, ngerman, n
+ohyphenation, loaded.
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/base/article.cls
+Document Class: article 2001/04/21 v1.4e Standard LaTeX document class
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/base/size10.clo
+File: size10.clo 2001/04/21 v1.4e Standard LaTeX file (size option)
+)
+\c@part=\count79
+\c@section=\count80
+\c@subsection=\count81
+\c@subsubsection=\count82
+\c@paragraph=\count83
+\c@subparagraph=\count84
+\c@figure=\count85
+\c@table=\count86
+\abovecaptionskip=\skip41
+\belowcaptionskip=\skip42
+\bibindent=\dimen102
+) (./coral.aux)
+\openout1 = `coral.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 11.
+LaTeX Font Info:    ... okay on input line 11.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 11.
+
+(/usr/local/teTeX/share/texmf.tetex/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+)
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <14.4> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <14.4> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 18.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 18.
+
+
+LaTeX Warning: No \author given.
+
+LaTeX Font Info:    Font shape `OT1/phv/m/it' in size <10> not available
+(Font)              Font shape `OT1/phv/m/sl' tried instead on input line 22.
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <9> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 23.
+(./coral.toc
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <10> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 1.
+)
+\tf@toc=\write3
+\openout3 = `coral.toc'.
+
+ [1
+
+{/usr/local/teTeX/share/texmf.local/fonts/map/pdftex/updmap/pdftex.map}]
+LaTeX Font Info:    Try loading font information for OMS+phv on input line 78.
+ (/usr/local/teTeX/share/texmf.tetex/tex/latex/psnfss/omsphv.fd
+File: omsphv.fd 
+)
+LaTeX Font Info:    Font shape `OMS/phv/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 78.
+
+[2]
+Overfull \hbox (2.45015pt too wide) in paragraph at lines 97--98
+[]/phvr7t/Codes re-lated to ar-rays and ar-ray cal-cu-la-tions are kept in /cmt
+t10/src/Arrays//phvr7t/. This in-cludes the classes: /cmtt10/CCHArray/phvr7t/,
+ []
+
+LaTeX Font Info:    Font shape `OT1/phv/bx/n' in size <12> not available
+(Font)              Font shape `OT1/phv/b/n' tried instead on input line 108.
+
+Underfull \hbox (badness 10000) in paragraph at lines 112--113
+
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmtt on input line 115
+.
+LaTeX Font Info:    No file OMScmtt.fd. on input line 115.
+
+LaTeX Font Warning: Font shape `OMS/cmtt/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbraceleft' on input line 115.
+
+
+Overfull \hbox (45.92938pt too wide) in paragraph at lines 115--157
+/phvr7t/The pa-ram-e-ters /cmtt10/XSYM, YSYM, ZSYM, NXMAX, NYMAX, NZMAX, DELX, 
+DELY, DELZ /phvr7t/are printed by call-ing /cmtt10/PrintPars()/phvr7t/.
+ []
+
+[3] [4] [5]
+Overfull \hbox (25.7119pt too wide) in paragraph at lines 250--251
+[]/phvr7t/Individual el-e-ments can be ac-cessed, set or in-cre-mented with the
+ func-tions /cmtt10/GetElement(...), SetElement(...)
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 265--274
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 287--302
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 308--312
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 313--327
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 328--331
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 332--342
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 343--348
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 349--351
+
+ []
+
+[8]
+Underfull \hbox (badness 10000) in paragraph at lines 370--371
+
+ []
+
+
+Overfull \hbox (38.90083pt too wide) in paragraph at lines 388--389
+/phvr7t/tion in terms of the rel-a-tive mo-men-tum, or in terms of the two mo-m
+enta of the par-ti-cles. The two /cmtt10/GetPsiSquared(...)
+ []
+
+
+Overfull \hbox (46.94978pt too wide) in paragraph at lines 390--397
+/phvr7t/mod-ify the phase shifts to ac-count for Coulomb which is done with the
+ /cmtt10/CoulWave::phaseshifts[]CoulombCorrect(...)
+ []
+
+[9] [10]
+Underfull \hbox (badness 10000) in paragraph at lines 478--487
+
+ []
+
+[11] [12]
+Overfull \hbox (9.26993pt too wide) in paragraph at lines 525--575
+ [] 
+ []
+
+[13]
+Overfull \hbox (3.4796pt too wide) in paragraph at lines 599--608
+/cmtt10/j2,double m2,double j,double m)/phvr7t/. A four vec-tor /cmtt10/p[4] /p
+hvr7t/can be boosted by a four ve-loc-ity /cmtt10/u[4] /phvr7t/to /cmtt10/pprim
+e[4]
+ []
+
+
+Overfull \hbox (24.7618pt too wide) in paragraph at lines 599--608
+/phvr7t/with /cmtt10/void lorentz(double *u,double *p,double *pprime)/phvr7t/. 
+The ``tri-an-gle func-tion'', /cmtt10/double triangle(double
+ []
+
+
+Overfull \hbox (30.40204pt too wide) in paragraph at lines 609--610
+/phvr7t/wave func-tions and a va-ri-ety of Bessel func-tions, which are all de-
+fined in /cmtt10/src/Utilities/SpecialFunctions/sf.h/phvr7t/.
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 613--617
+
+ []
+
+[14]
+Underfull \hbox (badness 10000) in paragraph at lines 621--641
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 621--641
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 621--641
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 621--641
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 621--641
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 642--649
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 642--649
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 650--654
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 669--679
+
+ []
+
+[15]
+Underfull \hbox (badness 10000) in paragraph at lines 680--682
+
+ []
+
+
+Overfull \hbox (24.02094pt too wide) in paragraph at lines 699--709
+| /cmtt10/g++ -I $/cmsy10/f/cmtt10/CORALHOME/cmsy10/g/cmtt10//include -L $/cmsy
+10/f/cmtt10/CORALHOME/cmsy10/g/cmtt10//lib -lcoral -lgsl -lgslcblas myprog.cc -
+o myprog/phvr7t/, 
+ []
+
+[16]
+Overfull \hbox (7.99084pt too wide) in paragraph at lines 718--731
+/cmtt10/coral.h misc.cc, misc.h, arrays.cc, arrays.h, sf.cc, sf.h, parametermap
+.cc, parametermap.h,
+ []
+
+
+Overfull \hbox (7.68063pt too wide) in paragraph at lines 718--731
+/cmtt10/wavefunction.cc, wavefunction.h, source2CF.cc, source2CF.h, kernel.cc, 
+kernel.h/phvr7t/. For in-stance,
+ []
+
+[17] (./coral.aux)
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 347 strings out of 95314
+ 4056 string characters out of 1187311
+ 54470 words of memory out of 1500963
+ 3468 multiletter control sequences out of 10000+50000
+ 26814 words of font info for 52 fonts, out of 1000000 for 2000
+ 14 hyphenation exceptions out of 1000
+ 30i,10n,19p,1129b,227s stack positions out of 5000i,500n,6000p,200000b,40000s
+ 99 PDF objects out of 300000
+ 0 named destinations out of 131072
+ 1 words of extra memory for PDF output out of 65536
+{/usr/local/teTeX/share/texmf.tetex/dvips/tetex/bbad153f.enc}</usr/local/teTe
+X/share/texmf.tetex/fonts/type1/bluesky/cm/cmsy5.pfb>{/usr/local/teTeX/share/te
+xmf.tetex/dvips/tetex/0ef0afca.enc}</usr/local/teTeX/share/texmf.tetex/fonts/ty
+pe1/bluesky/cm/cmr5.pfb>{/usr/local/teTeX/share/texmf.tetex/dvips/tetex/aae443f
+0.enc}</usr/local/teTeX/share/texmf.tetex/fonts/type1/bluesky/cm/cmmi5.pfb></us
+r/local/teTeX/share/texmf.tetex/fonts/type1/bluesky/cm/cmmi7.pfb>{/usr/local/te
+TeX/share/texmf.tetex/dvips/tetex/09fbbfac.enc}</usr/local/teTeX/share/texmf.te
+tex/fonts/type1/bluesky/cm/cmtt10.pfb></usr/local/teTeX/share/texmf.tetex/fonts
+/type1/bluesky/cm/cmex10.pfb>{/usr/local/teTeX/share/texmf.tetex/dvips/tetex/f7
+b6d320.enc}</usr/local/teTeX/share/texmf.tetex/fonts/type1/bluesky/cm/cmbx10.pf
+b></usr/local/teTeX/share/texmf.tetex/fonts/type1/bluesky/cm/cmr10.pfb></usr/lo
+cal/teTeX/share/texmf.tetex/fonts/type1/bluesky/cm/cmsy7.pfb></usr/local/teTeX/
+share/texmf.tetex/fonts/type1/bluesky/cm/cmr7.pfb></usr/local/teTeX/share/texmf
+.tetex/fonts/type1/bluesky/cm/cmmi10.pfb></usr/local/teTeX/share/texmf.tetex/fo
+nts/type1/bluesky/cm/cmsy6.pfb>{/usr/local/teTeX/share/texmf.tetex/dvips/psnfss
+/8r.enc}</usr/local/teTeX/share/texmf.tetex/fonts/type1/bluesky/cm/cmsy10.pfb>
+Output written on coral.pdf (17 pages, 139839 bytes).

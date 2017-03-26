@@ -1,0 +1,25 @@
+CORALHOMEDIR = ../../../../coralpha
+CMINUITHOMEDIR = ../../../../cminuit
+CPP = g++ 
+OPT = ${CPPFLAGS}
+MINUITFLAGS = -bind_at_load -Df2cFortran -lfrtbegin -lg2c -lSystemStubs -lSystem -lm
+
+# You shouldn't have to adjust anything below
+THISDIR = ${PWD}
+
+sourcefit_3dgaussian : sourcefit_3dgaussian.cc ${CORALHOMEDIR}/lib/libcoral.a
+	${CPP} ${OPT} sourcefit_3dgaussian.cc -I ${CORALHOMEDIR}/include ${CORALHOMEDIR}/lib/libcoral.a -lgsl -lgslcblas -o sourcefit_3dgaussian
+
+sourcefit_minuit_3dgaussian : sourcefit_minuit_3dgaussian.cc  ${CORALHOMEDIR}/lib/libcoral.a
+	${CPP} ${OPT} -bind_at_load -Df2cFortran sourcefit_minuit_3dgaussian.cc -I ${CORALHOMEDIR}/include -I ${CMINUITHOMEDIR}/include ${CORALHOMEDIR}/lib/libcoral.a ${CMINUITHOMEDIR}/lib/libcminuit.a -lgsl -lgslcblas ${MINUITFLAGS} -o sourcefit_minuit_3dgaussian
+
+sourcefit_blast : sourcefit_blast.cc ${CORALHOMEDIR}/lib/libcoral.a
+	${CPP} ${OPT} sourcefit_blast.cc -I ${CORALHOMEDIR}/include ${CORALHOMEDIR}/lib/libcoral.a -lgsl -lgslcblas -lfrtbegin -lg2c -lSystemStubs -lSystem -lm -o sourcefit_blast
+
+sourcefit_minuit_blast : sourcefit_minuit_blast.cc  ${CORALHOMEDIR}/lib/libcoral.a
+	${CPP} ${OPT} -bind_at_load -Df2cFortran sourcefit_minuit_blast.cc -I ${CORALHOMEDIR}/include -I ${CMINUITHOMEDIR}/include ${CORALHOMEDIR}/lib/libcoral.a ${CMINUITHOMEDIR}/lib/libcminuit.a -lgsl -lgslcblas ${MINUITFLAGS} -o sourcefit_minuit_blast
+
+coral :
+	cd ${CORALHOMEDIR}/lib; make; cd ${THISDIR}
+
+

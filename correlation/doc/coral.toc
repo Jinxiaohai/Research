@@ -1,0 +1,13 @@
+\contentsline {section}{\numberline {1}Introduction}{2}
+\contentsline {section}{\numberline {2}Directory Structure}{3}
+\contentsline {section}{\numberline {3}Data Arrays}{3}
+\contentsline {subsection}{\numberline {3.1}Cartesian Meshes}{3}
+\contentsline {subsection}{\numberline {3.2}Cartesian Harmonics Data Arrays}{5}
+\contentsline {subsection}{\numberline {3.3}Arrays for Expansions in Spherical Harmonics}{7}
+\contentsline {subsection}{\numberline {3.4}Array Operations Involving Multiple Arrays}{7}
+\contentsline {section}{\numberline {4}Wave Functions}{9}
+\contentsline {section}{\numberline {5}Kernels and Convolutions}{10}
+\contentsline {section}{\numberline {6}Calculating Source Functions}{11}
+\contentsline {section}{\numberline {7}Utilities}{14}
+\contentsline {section}{\numberline {8}Compiling and Running CorALPHA}{16}
+\contentsline {section}{\numberline {9}Known Issues}{17}
