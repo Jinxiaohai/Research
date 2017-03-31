@@ -38,8 +38,11 @@
 #include <sstream>
 #include "AMPT.h"
 #include "Particle.h"
+#include "Head.h"
 
 using namespace std;
+
+const double PI = TMath::Pi();
 
 int main(int argc, char *argv[])
 {
@@ -49,6 +52,10 @@ int main(int argc, char *argv[])
   
   TChain *chain = new TChain("AMPT");
   char FileList[1024];
+  double RRMS = 3.294;
+  double G = 1./12;
+  double dy = 1.;
+  double dpt = 0.2;
 
   ofstream output_data(outputFile);
   if (!output_data)
@@ -152,8 +159,22 @@ int main(int argc, char *argv[])
                       xiaohai::Particle labWParticle(ampt->ID[w], ampt->Px[w], ampt->Py[w],
                                                      ampt->Pz[w], ampt->Mass[w], ampt->X[w],
                                                      ampt->Y[w], ampt->Z[w], ampt->Time[w]);
+                      /// there are some problem in coordinate and time.
+                      xiaohai::Particle phiParticle(333, ampt->Px[t]+ampt->Px[w],
+                                                    ampt->Py[t]+ampt->Py[w],
+                                                    ampt->Pz[t]+ampt->Pz[w], 1.20,
+                                                    1./2.*(ampt->X[t]+ampt->X[w]),
+                                                    1./2.*(ampt->Y[t]+ampt->Y[w]),
+                                                    1./2.*(ampt->Z[t]+ampt->Z[w]),
+                                                    1./2.*(ampt->Time[t]+ampt->Time[w]));
               
-                      double totalEnergy = labTParticle.GetEnergy() + labWParticle.GetEnergy();
+                      double Rapidity = phiParticle.GetRapidity();
+                      double transpt = phiParticle.GetPt();
+                      if (abs(Rapidity) > dy)
+                        {
+                          continue;
+                        }
+                      double totalEnergy = phiParticle.GetEnergy();
                       double betax = -(labTParticle.GetPx() + labWParticle.GetPx()) / totalEnergy;
                       double betay = -(labTParticle.GetPy() + labWParticle.GetPy()) / totalEnergy;
                       double betaz = -(labTParticle.GetPz() + labWParticle.GetPz()) / totalEnergy;
@@ -161,12 +182,56 @@ int main(int argc, char *argv[])
                       xiaohai::Particle cenTParticle = labTParticle.Boost(betax, betay, betaz);
                       xiaohai::Particle cenWParticle = labWParticle.Boost(betax, betay, betaz);
                       
+                      if (cenTParticle.GetTime() > cenWParticle.GetTime())
+                        {
+                          double deltaTime = cenTParticle.GetTime() - cenWParticle.GetTime();
+                          cenWParticle.SetX(cenWParticle.GetX() + cenWParticle.GetBetaX() * deltaTime);
+                          cenWParticle.SetY(cenWParticle.GetY() + cenWParticle.GetBetaY() * deltaTime);
+                          cenWParticle.SetZ(cenWParticle.GetZ() + cenWParticle.GetBetaZ() * deltaTime);
+                          cenWParticle.SetTime(cenTParticle.GetTime());
+                        }
+                      else
+                        {
+                          double deltaTime = cenWParticle.GetTime() - cenTParticle.GetTime();
+                          cenTParticle.SetX(cenTParticle.GetX() + cenTParticle.GetBetaX() * deltaTime);
+                          cenTParticle.SetY(cenTParticle.GetY() + cenTParticle.GetBetaY() * deltaTime);
+                          cenTParticle.SetZ(cenTParticle.GetZ() + cenTParticle.GetBetaZ() * deltaTime);
+                          cenTParticle.SetTime(cenWParticle.GetTime());
+                        }
+
+                      xiaohai::ThreeDimensionVector<double> r1(cenTParticle.GetX(),
+                                                               cenTParticle.GetY(),
+                                                               cenTParticle.GetZ());
+                      xiaohai::ThreeDimensionVector<double> r2(cenWParticle.GetX(),
+                                                               cenWParticle.GetY(),
+                                                               cenWParticle.GetZ());
+                      xiaohai::ThreeDimensionVector<double> k1(cenTParticle.GetPx(),
+                                                               cenTParticle.GetPy(),
+                                                               cenTParticle.GetPz());
+                      xiaohai::ThreeDimensionVector<double> k2(cenWParticle.GetPx(),
+                                                               cenWParticle.GetPy(),
+                                                               cenWParticle.GetPz());
+                      xiaohai::ThreeDimensionVector<double> r = r1 - r2;
+                      xiaohai::ThreeDimensionVector<double> k = (k1 - k2) * 0.5;
+                      double rSquare = r.GetMag2() * 25.6889;
+                      double kSquare = k.GetMag2();
+                      double sigmaSquare = 8./3.*RRMS*RRMS;
+                      double Rho = G * 8 * exp(-rSquare/sigmaSquare - kSquare*sigmaSquare);
+                      // cout << Rho << endl;
+                      // fb->Fill(Rho);
+                      if (transpt > 1e-5)
+                        {
+                          yield->Fill(transpt, Rho*1./(2.*PI*transpt*dpt*2*dy));
+                        }
                     }// in if
                 }//for
             }//out if
         }//for
     }//for
 
+  fb->Write();
+  yield->Scale(1./entries);
+  yield->Write();
   output_data.close();
   delete chain;
   delete ampt;

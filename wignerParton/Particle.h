@@ -21,26 +21,35 @@ namespace xiaohai
   {
     friend istream &operator>>(istream &, Particle &);
   public:
-  Particle(int Id, double Px, double Py, double Pz, double Mass,
-           double X, double Y, double Z, double Time)
-    :xiaohaiid__(Id), xiaohaipx__(Px), xiaohaipy__(Py), xiaohaipz__(Pz),
-      xiaohaimass__(Mass), xiaohaix__(X), xiaohaiy__(Y), xiaohaiz__(Z),
-      xiaohaitime__(Time){}
-  Particle():xiaohaiid__(0), xiaohaipx__(0), xiaohaipy__(0), xiaohaipz__(0),
-      xiaohaimass__(0), xiaohaix__(0), xiaohaiy__(0), xiaohaiz__(0),
-      xiaohaitime__(0){}
+    Particle(int Id, double Px, double Py, double Pz, double Mass,
+             double X, double Y, double Z, double Time)
+      :xiaohaiid__(Id), xiaohaipx__(Px), xiaohaipy__(Py), xiaohaipz__(Pz),
+       xiaohaimass__(Mass), xiaohaix__(X), xiaohaiy__(Y), xiaohaiz__(Z),
+       xiaohaitime__(Time){}
+    Particle():xiaohaiid__(0), xiaohaipx__(0), xiaohaipy__(0), xiaohaipz__(0),
+               xiaohaimass__(0), xiaohaix__(0), xiaohaiy__(0), xiaohaiz__(0),
+               xiaohaitime__(0){}
     ~Particle(){}
     Particle Boost(double, double, double);
     Particle &operator=(Particle particle);
     const int GetId() const;
+    void SetId(int );
     const double GetPx() const;
+    void SetPx(double);
     const double GetPy() const;
+    void SetPy(double);
     const double GetPz() const;
+    void SetPz(double);
     const double GetMass() const;
+    void SetMass(double);
     const double GetX() const;
+    void SetX(double);
     const double GetY() const;
+    void SetY(double);
     const double GetZ() const;
+    void SetZ(double);
     const double GetTime() const;
+    void SetTime(double);
     const double GetEnergy() const;
     const double GetRapidity() const;
     const double GetPt() const;
@@ -60,58 +69,58 @@ namespace xiaohai
     double xiaohaitime__;
   };
 
-  template <typename T> 
-    class ThreeDimensionVector
-    {
-    public:
+  template <class T> 
+  class ThreeDimensionVector
+  {
+  public:
     ThreeDimensionVector(): ThreeX__(0.), ThreeY__(0.), ThreeZ__(0.){}
     ThreeDimensionVector(const T x, const T y, const T z)
       : ThreeX__(x), ThreeY__(y), ThreeZ__(z){}
-      ~ThreeDimensionVector(){};
-      ThreeDimensionVector &operator=(ThreeDimensionVector &);
-      const T GetX() const;
-      const T GetY() const;
-      const T GetZ() const;
-      const T GetPt() const;
-      const T GetMag() const;
-      const T GetMag2() const;
-      ThreeDimensionVector& operator+=(const ThreeDimensionVector &);
-      ThreeDimensionVector operator+(const ThreeDimensionVector &);
-      ThreeDimensionVector& operator-=(const ThreeDimensionVector &);
-      ThreeDimensionVector operator-(const ThreeDimensionVector &);
-      ThreeDimensionVector& operator*=(const T);
-      ThreeDimensionVector operator*(const T);
-      ThreeDimensionVector& operator-();
+    ~ThreeDimensionVector(){};
+    ThreeDimensionVector& operator=(const ThreeDimensionVector &);
+    const T GetX() const;
+    void SetX(T);
+    const T GetY() const;
+    void SetY(T);
+    const T GetZ() const;
+    void SetZ(T);
+    const T GetPt() const;
+    const T GetMag() const;
+    const T GetMag2() const;
+    ThreeDimensionVector& operator+=(const ThreeDimensionVector &);
+    ThreeDimensionVector& operator-=(const ThreeDimensionVector &);
+    ThreeDimensionVector& operator*=(const T);
+    ThreeDimensionVector& operator-();
 
-    private:
-      T ThreeX__;
-      T ThreeY__;
-      T ThreeZ__;
-    };
+  private:
+    T ThreeX__;
+    T ThreeY__;
+    T ThreeZ__;
+  };
 }
 
 namespace xiaohai
 {
   istream &operator>>(istream &is, Particle &particle)
-    {
-      is >> particle.xiaohaiid__ >> particle.xiaohaipx__ >> particle.xiaohaipy__
-         >> particle.xiaohaipz__ >> particle.xiaohaimass__ >> particle.xiaohaix__
-         >> particle.xiaohaiy__ >> particle.xiaohaiz__ >> particle.xiaohaitime__;
-      return is;
-    }
+  {
+    is >> particle.xiaohaiid__ >> particle.xiaohaipx__ >> particle.xiaohaipy__
+       >> particle.xiaohaipz__ >> particle.xiaohaimass__ >> particle.xiaohaix__
+       >> particle.xiaohaiy__ >> particle.xiaohaiz__ >> particle.xiaohaitime__;
+    return is;
+  }
   Particle &Particle::operator=(Particle particle)
-    {
-      this->xiaohaiid__ = particle.GetId();
-      this->xiaohaipx__ = particle.GetPx();
-      this->xiaohaipy__ = particle.GetPy();
-      this->xiaohaipz__ = particle.GetPz();
-      this->xiaohaimass__ = particle.GetMass();
-      this->xiaohaix__ = particle.GetX();
-      this->xiaohaiy__ = particle.GetY();
-      this->xiaohaiz__ = particle.GetZ();
-      this->xiaohaitime__ = particle.GetTime();
-      return *this;
-    }
+  {
+    this->xiaohaiid__ = particle.GetId();
+    this->xiaohaipx__ = particle.GetPx();
+    this->xiaohaipy__ = particle.GetPy();
+    this->xiaohaipz__ = particle.GetPz();
+    this->xiaohaimass__ = particle.GetMass();
+    this->xiaohaix__ = particle.GetX();
+    this->xiaohaiy__ = particle.GetY();
+    this->xiaohaiz__ = particle.GetZ();
+    this->xiaohaitime__ = particle.GetTime();
+    return *this;
+  }
   
   Particle Particle::Boost(double bx, double by, double bz)
   {
@@ -178,37 +187,73 @@ namespace xiaohai
   {
     return this->xiaohaiid__;
   }
+  void Particle::SetId(int id)
+  {
+    this->xiaohaiid__ = id;
+  }
   const double Particle::GetPx() const
   {
     return this->xiaohaipx__;
+  }
+  void Particle::SetPx(double px)
+  {
+    this->xiaohaipx__ = px;
   }
   const double Particle::GetPy() const
   {
     return this->xiaohaipy__;
   }
+  void Particle::SetPy(double py)
+  {
+    this->xiaohaipy__ = py;
+  }
   const double Particle::GetPz() const
   {
     return this->xiaohaipz__;
+  }
+  void Particle::SetPz(double pz)
+  {
+    this->xiaohaipz__ = pz;
   }
   const double Particle::GetMass() const
   {
     return this->xiaohaimass__;
   }
+  void Particle::SetMass(double mass)
+  {
+    this->xiaohaimass__ = mass;
+  }
   const double Particle::GetX() const
   {
     return this->xiaohaix__;
+  }
+  void Particle::SetX(double x)
+  {
+    this->xiaohaix__ = x;
   }
   const double Particle::GetY() const
   {
     return this->xiaohaiy__;
   }
+  void Particle::SetY(double y)
+  {
+    this->xiaohaiy__ = y;
+  }
   const double Particle::GetZ() const
   {
     return this->xiaohaiz__;
   }
+  void Particle::SetZ(double z)
+  {
+    this->xiaohaiz__ = z;
+  }
   const double Particle::GetTime() const
   {
     return this->xiaohaitime__;
+  }
+  void Particle::SetTime(double Time)
+  {
+    this->xiaohaitime__ = Time;
   }
   const double Particle::GetEnergy() const
   {
@@ -242,128 +287,169 @@ namespace xiaohai
   }
 
   /// __________________________________________________
-  template <typename T>
-    ThreeDimensionVector<T>& ThreeDimensionVector<T>::
-    operator=(ThreeDimensionVector<T> &threedimensionvector)
+  /* template <class T> */
+  /* ThreeDimensionVector<T>& ThreeDimensionVector<T>:: */
+  /* operator=(ThreeDimensionVector<T> &threedimensionvector) */
+  /* { */
+  /*   this->ThreeX__ = threedimensionvector.GetX(); */
+  /*   this->ThreeY__ = threedimensionvector.GetY(); */
+  /*   this->ThreeZ__ = threedimensionvector.GetZ(); */
+  /*   return *this; */
+  /* } /// template */
+  template <class T>
+    ThreeDimensionVector<T> &ThreeDimensionVector<T>::
+    operator=(const ThreeDimensionVector<T> &threedimensionvector)
     {
-      this->ThreeX__ = threedimensionvector.ThreeX__;
-      this->ThreeY__ = threedimensionvector.ThreeY__;
-      this->ThreeZ__ = threedimensionvector.ThreeZ__;
+      this->ThreeX__ = threedimensionvector.GetX();
+      this->ThreeY__ = threedimensionvector.GetY();
+      this->ThreeZ__ = threedimensionvector.GetZ();
       return *this;
-    } /// template
-
-  template <typename T>
-    const T ThreeDimensionVector<T>::GetX() const
-    {
-      return this->ThreeX__;
     }
 
-  template <typename T>
-    const T ThreeDimensionVector<T>::GetY() const
-    {
-      return this->ThreeY__;
-    } /// template
+  template <class T>
+  const T ThreeDimensionVector<T>::GetX() const
+  {
+    return this->ThreeX__;
+  }
 
-  template <typename T>
-    const T ThreeDimensionVector<T>::GetZ() const
-    {
-      return this->ThreeZ__;
-    } /// template
+  template <class T>
+  void ThreeDimensionVector<T>::SetX(T x)
+  {
+    this->ThreeX__ = x;
+  } /// template
 
-  template <typename T>
-    const T ThreeDimensionVector<T>::GetPt() const
-    {
-      return sqrt(this->ThreeX__*this->ThreeX__
-                  + this->ThreeY__*this->ThreeY__);
-    } /// template
+  template <class T>
+  const T ThreeDimensionVector<T>::GetY() const
+  {
+    return this->ThreeY__;
+  } /// template
 
-  template <typename T>
-    const T ThreeDimensionVector<T>::GetMag() const
-    {
-      return sqrt(this->ThreeX__*this->ThreeX__
-                  + this->ThreeY__*this->ThreeY__
-                  + this->ThreeZ__*this->ThreeZ__);
-    } /// template
+  template <class T>
+  void ThreeDimensionVector<T>::SetY(T y)
+  {
+    this->ThreeY__ = y;
+  } /// template
 
-  template <typename T>
-    const T ThreeDimensionVector<T>::GetMag2() const
-    {
-      return (this->ThreeX__*this->ThreeX__
-              + this->ThreeY__*this->ThreeY__
-              + this->ThreeZ__*this->ThreeZ__);
-    } /// template
+  template <class T>
+  const T ThreeDimensionVector<T>::GetZ() const
+  {
+    return this->ThreeZ__;
+  } /// template
 
-  template <typename T>
-    ThreeDimensionVector<T>& ThreeDimensionVector<T>
-    ::operator+=(const ThreeDimensionVector<T> &threedimensionvector)
-    {
-      this->ThreeX__ += threedimensionvector.ThreeX__;
-      this->ThreeY__ += threedimensionvector.ThreeY__;
-      this->ThreeZ__ += threedimensionvector.ThreeZ__;
-      return *this;
-    } /// template
+  template <class T>
+  void ThreeDimensionVector<T>::SetZ(T z)
+  {
+    this->ThreeZ__ = z;
+  } /// template
 
-  template <typename T>
-    ThreeDimensionVector<T> ThreeDimensionVector<T>
-    ::operator+(const ThreeDimensionVector<T> &threedimensionvector)
-    {
-      ThreeDimensionVector<T> tmp;
-      tmp.ThreeX__ = this->ThreeX__ + threedimensionvector.ThreeX__;
-      tmp.ThreeY__ = this->ThreeY__ + threedimensionvector.ThreeY__;
-      tmp.ThreeZ__ = this->ThreeZ__ + threedimensionvector.ThreeZ__;
-      return tmp;
-    } /// template
+  template <class T>
+  const T ThreeDimensionVector<T>::GetPt() const
+  {
+    return sqrt(this->ThreeX__*this->ThreeX__
+                + this->ThreeY__*this->ThreeY__);
+  } /// template
 
-  template <typename T>
-    ThreeDimensionVector<T>& ThreeDimensionVector<T>
-    ::operator-=(const ThreeDimensionVector<T> &threedimensionvector)
-    {
-      this->ThreeX__ -= threedimensionvector.ThreeX__;
-      this->ThreeY__ -= threedimensionvector.ThreeY__;
-      this->ThreeZ__ -= threedimensionvector.ThreeZ__;
-      return *this;
-    } /// template
+  template <class T>
+  const T ThreeDimensionVector<T>::GetMag() const
+  {
+    return sqrt(this->ThreeX__*this->ThreeX__
+                + this->ThreeY__*this->ThreeY__
+                + this->ThreeZ__*this->ThreeZ__);
+  } /// template
 
-  template <typename T>
-    ThreeDimensionVector<T> ThreeDimensionVector<T>
-    ::operator-(const ThreeDimensionVector<T> &threedimensionvector)
-    {
-      ThreeDimensionVector<T> tmp;
-      tmp.ThreeX__ = this->ThreeX__ - threedimensionvector.ThreeX__;
-      tmp.ThreeY__ = this->ThreeY__ - threedimensionvector.ThreeY__;
-      tmp.ThreeZ__ = this->ThreeZ__ - threedimensionvector.ThreeZ__;
-      return tmp;
-    } /// template
+  template <class T>
+  const T ThreeDimensionVector<T>::GetMag2() const
+  {
+    return (this->ThreeX__*this->ThreeX__
+            + this->ThreeY__*this->ThreeY__
+            + this->ThreeZ__*this->ThreeZ__);
+  } /// template
+
+  template <class T>
+  ThreeDimensionVector<T>& ThreeDimensionVector<T>
+  ::operator+=(const ThreeDimensionVector<T> &threedimensionvector)
+  {
+    this->ThreeX__ += threedimensionvector.GetX();
+    this->ThreeY__ += threedimensionvector.GetY();
+    this->ThreeZ__ += threedimensionvector.GetZ();
+    return *this;
+  } /// template
+
+  template <class T>
+  ThreeDimensionVector<T> 
+  operator+(const ThreeDimensionVector<T> &threedimensionvector1,
+            const ThreeDimensionVector<T> &threedimensionvector2)
+  {
+    ThreeDimensionVector<T> tmp;
+    tmp.SetX(threedimensionvector1.GetX() + threedimensionvector2.GetX());
+    tmp.SetY(threedimensionvector1.GetY() + threedimensionvector2.GetY());
+    tmp.SetZ(threedimensionvector1.GetZ() + threedimensionvector2.GetZ());
+    return tmp;
+  } /// template
+
+  template <class T>
+  ThreeDimensionVector<T>& ThreeDimensionVector<T>
+  ::operator-=(const ThreeDimensionVector<T> &threedimensionvector)
+  {
+    this->ThreeX__ -= threedimensionvector.GetX();
+    this->ThreeY__ -= threedimensionvector.GetY();
+    this->ThreeZ__ -= threedimensionvector.GetZ();
+    return *this;
+  } /// template
+
+  template <class T>
+  ThreeDimensionVector<T>
+  operator-(const ThreeDimensionVector<T> &threedimensionvector1,
+            const ThreeDimensionVector<T> &threedimensionvector2)
+  {
+    ThreeDimensionVector<T> tmp;
+    tmp.SetX(threedimensionvector1.GetX() - threedimensionvector2.GetX());
+    tmp.SetY(threedimensionvector1.GetY() - threedimensionvector2.GetY());
+    tmp.SetZ(threedimensionvector1.GetZ() - threedimensionvector2.GetZ());
+    return tmp;
+  } /// template
   
-  template <typename T>
-    ThreeDimensionVector<T>& ThreeDimensionVector<T>
-    ::operator*=(const T num)
-    {
-      this->ThreeX__ *= num;
-      this->ThreeY__ *= num;
-      this->ThreeZ__ *= num;
-      return *this;
-    } /// template
+  template <class T>
+  ThreeDimensionVector<T>& ThreeDimensionVector<T>
+  ::operator*=(const T num)
+  {
+    this->ThreeX__ *= num;
+    this->ThreeY__ *= num;
+    this->ThreeZ__ *= num;
+    return *this;
+  } /// template
 
-  template <typename T>
-    ThreeDimensionVector<T> ThreeDimensionVector<T>
-    ::operator*(const T num)
-    {
-      ThreeDimensionVector<T> tmp;
-      tmp.ThreeX__ = this->ThreeX__ * num;
-      tmp.ThreeY__ = this->ThreeY__ * num;
-      tmp.ThreeZ__ = this->ThreeZ__ * num;
-      return tmp;
-    } /// template
+  template <class T>
+  ThreeDimensionVector<T>
+  operator*(const T num, const ThreeDimensionVector<T>& threedimensionvector)
+  {
+    ThreeDimensionVector<T> tmp;
+    tmp.SetX(num * threedimensionvector.GetX());
+    tmp.SetY(num * threedimensionvector.GetY());
+    tmp.SetZ(num * threedimensionvector.GetZ());
+    return tmp;
+  } /// template
 
-  template <typename T>
-    ThreeDimensionVector<T>& ThreeDimensionVector<T>
-    ::operator-()
-    {
-      this->ThreeX__ = (-this->ThreeX__);
-      this->ThreeY__ = (-this->ThreeY__);
-      this->ThreeZ__ = (-this->ThreeZ__);
-      return *this;
-    } /// template
+  template <class T>
+  ThreeDimensionVector<T>
+  operator*(const ThreeDimensionVector<T>& threedimensionvector, const T num)
+  {
+    ThreeDimensionVector<T> tmp;
+    tmp.SetX(threedimensionvector.GetX() * num);
+    tmp.SetY(threedimensionvector.GetY() * num);
+    tmp.SetZ(threedimensionvector.GetZ() * num);
+    return tmp;
+  } /// template
+
+  template <class T>
+  ThreeDimensionVector<T>& ThreeDimensionVector<T>
+  ::operator-()
+  {
+    this->ThreeX__ = (-this->ThreeX__);
+    this->ThreeY__ = (-this->ThreeY__);
+    this->ThreeZ__ = (-this->ThreeZ__);
+    return *this;
+  } /// template
+
 }
 #endif /* PARTICLE_H */
