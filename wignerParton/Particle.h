@@ -59,6 +59,35 @@ namespace xiaohai
     double xiaohaiz__;
     double xiaohaitime__;
   };
+
+  template <typename T> 
+    class ThreeDimensionVector
+    {
+    public:
+    ThreeDimensionVector(): ThreeX__(0.), ThreeY__(0.), ThreeZ__(0.){}
+    ThreeDimensionVector(const T x, const T y, const T z)
+      : ThreeX__(x), ThreeY__(y), ThreeZ__(z){}
+      ~ThreeDimensionVector(){};
+      ThreeDimensionVector &operator=(ThreeDimensionVector &);
+      const T GetX() const;
+      const T GetY() const;
+      const T GetZ() const;
+      const T GetPt() const;
+      const T GetMag() const;
+      const T GetMag2() const;
+      ThreeDimensionVector& operator+=(const ThreeDimensionVector &);
+      ThreeDimensionVector operator+(const ThreeDimensionVector &);
+      ThreeDimensionVector& operator-=(const ThreeDimensionVector &);
+      ThreeDimensionVector operator-(const ThreeDimensionVector &);
+      ThreeDimensionVector& operator*=(const T);
+      ThreeDimensionVector operator*(const T);
+      ThreeDimensionVector& operator-();
+
+    private:
+      T ThreeX__;
+      T ThreeY__;
+      T ThreeZ__;
+    };
 }
 
 namespace xiaohai
@@ -211,5 +240,130 @@ namespace xiaohai
   {
     return this->xiaohaipz__ / this->GetEnergy();
   }
+
+  /// __________________________________________________
+  template <typename T>
+    ThreeDimensionVector<T>& ThreeDimensionVector<T>::
+    operator=(ThreeDimensionVector<T> &threedimensionvector)
+    {
+      this->ThreeX__ = threedimensionvector.ThreeX__;
+      this->ThreeY__ = threedimensionvector.ThreeY__;
+      this->ThreeZ__ = threedimensionvector.ThreeZ__;
+      return *this;
+    } /// template
+
+  template <typename T>
+    const T ThreeDimensionVector<T>::GetX() const
+    {
+      return this->ThreeX__;
+    }
+
+  template <typename T>
+    const T ThreeDimensionVector<T>::GetY() const
+    {
+      return this->ThreeY__;
+    } /// template
+
+  template <typename T>
+    const T ThreeDimensionVector<T>::GetZ() const
+    {
+      return this->ThreeZ__;
+    } /// template
+
+  template <typename T>
+    const T ThreeDimensionVector<T>::GetPt() const
+    {
+      return sqrt(this->ThreeX__*this->ThreeX__
+                  + this->ThreeY__*this->ThreeY__);
+    } /// template
+
+  template <typename T>
+    const T ThreeDimensionVector<T>::GetMag() const
+    {
+      return sqrt(this->ThreeX__*this->ThreeX__
+                  + this->ThreeY__*this->ThreeY__
+                  + this->ThreeZ__*this->ThreeZ__);
+    } /// template
+
+  template <typename T>
+    const T ThreeDimensionVector<T>::GetMag2() const
+    {
+      return (this->ThreeX__*this->ThreeX__
+              + this->ThreeY__*this->ThreeY__
+              + this->ThreeZ__*this->ThreeZ__);
+    } /// template
+
+  template <typename T>
+    ThreeDimensionVector<T>& ThreeDimensionVector<T>
+    ::operator+=(const ThreeDimensionVector<T> &threedimensionvector)
+    {
+      this->ThreeX__ += threedimensionvector.ThreeX__;
+      this->ThreeY__ += threedimensionvector.ThreeY__;
+      this->ThreeZ__ += threedimensionvector.ThreeZ__;
+      return *this;
+    } /// template
+
+  template <typename T>
+    ThreeDimensionVector<T> ThreeDimensionVector<T>
+    ::operator+(const ThreeDimensionVector<T> &threedimensionvector)
+    {
+      ThreeDimensionVector<T> tmp;
+      tmp.ThreeX__ = this->ThreeX__ + threedimensionvector.ThreeX__;
+      tmp.ThreeY__ = this->ThreeY__ + threedimensionvector.ThreeY__;
+      tmp.ThreeZ__ = this->ThreeZ__ + threedimensionvector.ThreeZ__;
+      return tmp;
+    } /// template
+
+  template <typename T>
+    ThreeDimensionVector<T>& ThreeDimensionVector<T>
+    ::operator-=(const ThreeDimensionVector<T> &threedimensionvector)
+    {
+      this->ThreeX__ -= threedimensionvector.ThreeX__;
+      this->ThreeY__ -= threedimensionvector.ThreeY__;
+      this->ThreeZ__ -= threedimensionvector.ThreeZ__;
+      return *this;
+    } /// template
+
+  template <typename T>
+    ThreeDimensionVector<T> ThreeDimensionVector<T>
+    ::operator-(const ThreeDimensionVector<T> &threedimensionvector)
+    {
+      ThreeDimensionVector<T> tmp;
+      tmp.ThreeX__ = this->ThreeX__ - threedimensionvector.ThreeX__;
+      tmp.ThreeY__ = this->ThreeY__ - threedimensionvector.ThreeY__;
+      tmp.ThreeZ__ = this->ThreeZ__ - threedimensionvector.ThreeZ__;
+      return tmp;
+    } /// template
+  
+  template <typename T>
+    ThreeDimensionVector<T>& ThreeDimensionVector<T>
+    ::operator*=(const T num)
+    {
+      this->ThreeX__ *= num;
+      this->ThreeY__ *= num;
+      this->ThreeZ__ *= num;
+      return *this;
+    } /// template
+
+  template <typename T>
+    ThreeDimensionVector<T> ThreeDimensionVector<T>
+    ::operator*(const T num)
+    {
+      ThreeDimensionVector<T> tmp;
+      tmp.ThreeX__ = this->ThreeX__ * num;
+      tmp.ThreeY__ = this->ThreeY__ * num;
+      tmp.ThreeZ__ = this->ThreeZ__ * num;
+      return tmp;
+    } /// template
+
+  template <typename T>
+    ThreeDimensionVector<T>& ThreeDimensionVector<T>
+    ::operator-()
+    {
+      this->ThreeX__ = (-this->ThreeX__);
+      this->ThreeY__ = (-this->ThreeY__);
+      this->ThreeZ__ = (-this->ThreeZ__);
+      return *this;
+    } /// template
 }
 #endif /* PARTICLE_H */

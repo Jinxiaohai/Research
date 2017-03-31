@@ -41,9 +41,6 @@
 
 using namespace std;
 
-double GetSquare(const double, const double, const double);
-double GetSquare(const double, const double, const double, const double);
-
 int main(int argc, char *argv[])
 {
   if (argc != 3) return 0;
@@ -175,13 +172,4 @@ int main(int argc, char *argv[])
   delete ampt;
   delete saveFile;
   return 0;
-}
-
-double GetSquare(const double x1, const double x2, const double x3)
-{
-  return sqrt(x1*x1 + x2*x2 + x3*x3);
-}
-double GetSquare(const double x1, const double x2, const double x3, const double x4)
-{
-  return sqrt(x1*x1 + x2*x2 + x3*x3 + x4*x4);
 }
