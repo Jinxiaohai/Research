@@ -1036,6 +1036,21 @@ c     at T=150MeV, thermal weights for eta and omega(spin1) are about the same:
  1003 CONTINUE
 c  determine hadron formation time, position and momentum:
       inatt=0
+c$$$      >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+c$$$         WW       WW        WW RRRRRRR  II TTTTTTTTTT EEEEEE
+c$$$          WW     WW WW     WW  RR  RR   II     TT     EE
+c$$$           WW   WW   WW   WW   RRRRR    II     TT     EEEEEE
+c$$$            WW WW     WW WW    RR RR    II     TT     EE
+c$$$             WW        WW      RR  RR   II     TT     EEEEEE
+c$$$      >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+c$$$            输出部分子的信息在组合之后。
+c$$$      >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+c$$$         WW       WW        WW RRRRRRR  II TTTTTTTTTT EEEEEE
+c$$$          WW     WW WW     WW  RR  RR   II     TT     EE
+c$$$           WW   WW   WW   WW   RRRRR    II     TT     EEEEEE
+c$$$            WW WW     WW WW    RR RR    II     TT     EE
+c$$$             WW        WW      RR  RR   II     TT     EEEEEE
+c$$$      >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 clin-6/2009 write out parton info after coalescence:
       if(ioscar.eq.3) then
          WRITE (85, 395) IAEVT, 3*nsmbbbar+2*nsmmeson,nsmbbbar,nsmmeson, 
@@ -1059,6 +1074,9 @@ c
               e1=PESGS(ISG,1)
               e2=PESGS(ISG,2)
 c
+c$$$      >>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+c$$$        对于有两个价夸克组成的介子
+c$$$      >>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
               if(NJSGS(ISG).eq.2) then
                PXAR(inatt)=sngl(px1+px2)
                PYAR(inatt)=sngl(py1+py2)
@@ -1072,6 +1090,9 @@ clin-9/2012: improve precision for argument in sqrt():
                p2=py1+py2
                p3=pz1+pz2
 c
+c$$$      >>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+c$$$        对于有三个加夸克组成的重子
+c$$$      >>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
               elseif((isoft.eq.4.or.isoft.eq.5).and.NJSGS(ISG).eq.3) 
      1              then
                PX3=PXSGS(ISG,3)
@@ -1091,6 +1112,9 @@ clin-9/2012: improve precision for argument in sqrt():
                p3=pz1+pz2+pz3
 c
               endif
+c$$$      >>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+c$$$        根据组合成的粒子的种类给出粒子的质量
+c$$$      >>>>>>>>>>>>>>>>>>>>>>>>>>>>><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
               XMAR(inatt)=ULMASS(ITYPAR(inatt))
 clin-5/2011-add finite width to resonances (rho,omega,eta,K*,phi,Delta) after formation:
               kf=KATT(inatt,1)
