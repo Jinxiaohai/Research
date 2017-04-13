@@ -1,0 +1,9 @@
+=====================================================
+ Mission Started   at Thu Apr 13 14:00:06 CST 2017
+=====================================================
+rm zpc.o zpc.exe
+g++ -Wall -g -I/opt/root53424/include -L/opt/root53424/lib -c zpc.cpp
+g++ -o zpc.exe zpc.o -L/opt/root53424/lib -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -pthread -lm -ldl -rdynamic -L/opt/root53424/lib -lGui -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -pthread -lm -ldl -rdynamic
+=====================================================
+ Mission Completed at Thu Apr 13 14:37:29 CST 2017
+=====================================================

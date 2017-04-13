@@ -1,0 +1,13 @@
+#+IsPickleJob = true
+#requirements = TARGET.IsPickleSlot
+Universe     = vanilla
+Notification = Error
+Initialdir   = /home/jinxiaohai/jinxiaohai/fluctuation/code
+# Executable   = $(Initialdir)/run00.csh
+Executable   = $(Initialdir)/backup.csh
+Arguments    = $(Process)
+Log          = $(Initialdir)/Log/job00_$(Process).log	
+Output       = $(Initialdir)/Log/job00_$(Process).out
+Error        = $(Initialdir)/Log/job00_$(Process).err
+Notify_user  = jinxiaohai@sinap.ac.cn
+Queue 50

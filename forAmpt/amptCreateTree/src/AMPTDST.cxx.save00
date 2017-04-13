@@ -1,0 +1,266 @@
+#include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <dirent.h>
+
+#include "math.h"
+#include "string.h"
+
+#ifndef __CINT__
+#include "TROOT.h"
+#include "TFile.h"
+
+#include "TChain.h"
+#include "TF1.h"
+#include "TH1.h"
+#include "TH2.h"
+#include "TStyle.h"
+#include "TCanvas.h"
+#include "TProfile.h"
+#include "TTree.h"
+#include "TNtuple.h"
+#include "TRandom.h"
+#include "TMath.h"
+#include "TVector2.h"
+#include "TVector3.h"
+#include "TLorentzVector.h"
+#include "TSystem.h"
+#include "TUnixSystem.h"
+#include "TRandom3.h"
+#endif
+
+#include <stdio.h>
+#include <iostream>
+#include <fstream>
+#include "iomanip"
+using namespace std;
+
+
+#include "TFile.h"
+#include "TTree.h"
+#include "TBrowser.h"
+#include "TH2.h"
+#include "TRandom.h"
+#include "TClassTable.h"
+#include "TSystem.h"
+//#include "MYEvent.h"
+
+//TH1D *pTdst = new TH1D("pTdst","pTdst",100,0,20);
+
+const Int_t kMaxtrack = 25000;
+
+typedef struct { 
+  Int_t        multi    ; // Multiplicity
+  Float_t      impactpar; //impact parameter
+  Int_t        NELP     ;//elastic participants projectile
+  Int_t        NINP     ;//inelastic participants projectile
+  Int_t        NELT     ;//elastic participants target
+  Int_t        NINT     ;//inelastic participants target; NINT is a intrinsic fortran function, rename it to NINTHJ
+  Int_t        N0       ;//N-N
+  Int_t        N01      ;//N-Nwounded
+  Int_t        N10      ;//Nwounded-N
+  Int_t        N11      ;//Nwounded-Nwounded
+  Int_t        ID[kMaxtrack];      //KF code of particle
+  Float_t      fPx[kMaxtrack];           //X component of the momentum
+  Float_t      fPy[kMaxtrack];           //Y component of the momentum
+  Float_t      fPz[kMaxtrack];           //Z component of the momentum
+  Float_t      fEnergy[kMaxtrack];        //The energy  of this particle
+  Float_t      fX[kMaxtrack];       //X coordinate of the first point
+  Float_t      fY[kMaxtrack];       //Y coordinate of the first point
+  Float_t      fZ[kMaxtrack];       //Z coordinate of the first point
+  Float_t      fT[kMaxtrack];       //T coordinate of the first point
+} Cell_t;
+
+double PI = TMath::Pi();
+double ANUMBER = 197.;
+double pTbin[15]={0.0,0.2,0.4,0.6,0.8,1.0,1.3,1.6,2.0,2.5,3.5,4.0,4.5,5.0,6.};
+
+TH1D *proton_pT_dst = new TH1D("proton_pT_dst","proton_pT_dst",14,pTbin);
+TProfile *proton_v2_pT = new TProfile("proton_v2_pT","proton_v2_pT",14,pTbin,-1.,1.);
+
+double EllipticFlow(TVector3 PP);
+int Centrality( double impact_parameter);
+
+int main(int argc, char **argv)
+{
+  char *FileInputPar=0;
+  char *FileInputDat=0;
+  char *FileOutput=0;
+
+  if(argc!=4) return 0;
+
+  if(argc==4)
+  {
+    FileInputPar = argv[1];
+    FileInputDat = argv[2];
+    FileOutput = argv[3];
+  }
+
+  ifstream inpar;
+  inpar.open(FileInputPar);
+  cout<<FileInputPar<<endl;
+
+  if(!inpar) return(0);
+
+  ifstream indat;
+  indat.open(FileInputDat);
+  cout<<FileInputDat<<endl;
+
+  if(!indat) return(0);
+
+  Float_t passhead;
+  Int_t multi;
+  Float_t impactpar;
+  Int_t NELP, NINP, NELT, NINT;
+  Int_t N0, N01, N10, N11;
+  Int_t id;
+  Float_t px,py,pz,mass,x,y,z,ftime;
+  Float_t          energy;
+  char mP1[256],mP2[256],mP3[256],mP4[256];
+  char mR1[256],mR2[256],mR3[256],mR4[256];
+
+  char outfile[256];
+  sprintf(outfile,"%s.root",FileOutput); 
+  TFile *file = new TFile(outfile,"RECREATE");
+  TTree *tree = new TTree("AMPT","AMPT DST Tree");
+  Cell_t cell;
+  tree->Branch("Multi",&cell.multi,"multi/I:impactpar/F:NELP/I:NINP:NELT:NINT:N0:N01:N10:N11");
+  tree->Branch("ID",cell.ID,"ID[multi]/I");
+  tree->Branch("Px",cell.fPx,"fPx[multi]/F");
+  tree->Branch("Py",cell.fPy,"fPy[multi]/F");
+  tree->Branch("Pz",cell.fPz,"fPz[multi]/F");  
+  tree->Branch("Energy",cell.fEnergy,"fEnergy[multi]/F");
+  tree->Branch("X",cell.fX,"fX[multi]/F");
+  tree->Branch("Y",cell.fY,"fY[multi]/F");
+  tree->Branch("Z",cell.fZ,"fZ[multi]/F");  
+  tree->Branch("Time",cell.fT,"fT[multi]/F");
+
+  Int_t count=0;
+  Int_t nlines=0;
+  // Fill the tree  while(){}
+  //  for (Int_t i=0; i<nev; i++) {
+  //  while(indat='\n' || !indat.eof()){
+  while(indat.good()){
+
+    if (count%1000==0)
+      cout << count << endl;
+
+    inpar>>impactpar>>NELP>>NINP>>NELT>>NINT>>N0>>N01>>N10>>N11;
+
+    indat>>passhead>>passhead>>multi>>passhead>>passhead>>passhead>>passhead>>passhead>>passhead>>passhead;
+
+    //if (indat.eof())
+    //break;
+    //cout<<"ok Nevent----> " << nevent <<endl;
+    //if(!indat.good()){ cout <<"Nevent----> " << nevent << " "<< event_pionter << endl; break;}
+    if(!indat.good()||!inpar.good()) break;
+
+    cell.multi     = multi    ;        
+    cell.impactpar = impactpar;    
+    cell.NELP      = NELP     ;       
+    cell.NINP      = NINP     ;       
+    cell.NELT      = NELT     ;         
+    cell.NINT      = NINT     ;         
+    cell.N0        = N0       ;         
+    cell.N01       = N01      ;         
+    cell.N10       = N10      ;
+    cell.N11       = N11      ;
+
+    nlines=0;
+    for (nlines=0;nlines<multi;nlines++) {
+
+      indat >> id >> mP1 >> mP2 >> mP3 >> mP4 >> mR1 >> mR2 >> mR3 >> mR4;
+
+      if(!indat.good()) break;
+
+      px = atof(mP1);
+      py = atof(mP2);
+      pz = atof(mP3);
+      mass = atof(mP4);
+      x=atof(mR1);
+      y=atof(mR2);
+      z=atof(mR3);
+      ftime=atof(mR4);
+
+      if(strstr(mP1,"*") || strstr(mP2,"*") || strstr(mP3,"*") ||strstr(mP4,"*")||strstr(mR1,"*") || strstr(mR2,"*") || strstr(mR3,"*") ||strstr(mR4,"*"))
+      {
+	px=1000000.;
+	py=1000000.;
+	pz=1000000.;
+	mass=1000000.;
+	x=1000000.;
+	y=1000000.;
+	z=1000000.;
+	ftime=1000000.;
+      }
+
+      //TVector3 mP(px,py,pz);
+      energy = sqrt(px*px+py*py+pz*pz+mass*mass);
+      TLorentzVector mP(px,py,pz,energy);
+      double pseorap=10.;
+      if(mP.Pt()>10e-7) pseorap=mP.PseudoRapidity();
+      int centrality = Centrality(impactpar);
+      if(centrality>=0 && centrality<80 && id==2212 && fabs(pseorap)<1.)
+      {
+	int xbin = proton_pT_dst->GetXaxis()->FindBin(mP.Pt());
+	double dpT = proton_pT_dst->GetXaxis()->GetBinWidth(xbin);
+	double dy = 2.;
+
+	proton_pT_dst->Fill(mP.Pt(),1./(2.*PI*mP.Pt()*dpT*dy));
+	proton_v2_pT->Fill(mP.Pt(),EllipticFlow(mP.Vect()));
+      }
+
+      //pTdst->Fill(mP.Pt());
+
+      cell.ID[nlines]    = id;
+      cell.fPx[nlines]   = px;
+      cell.fPy[nlines]   = py;
+      cell.fPz[nlines]   = pz;
+      cell.fEnergy[nlines] = energy;
+      cell.fX[nlines]    = x;
+      cell.fY[nlines]    = y;
+      cell.fZ[nlines]    = z;
+      cell.fT[nlines]    = ftime;
+    }
+    if(nlines!=multi) break;
+    tree->Fill();
+    count++;
+  }
+  indat.close();
+  inpar.close();
+
+  proton_pT_dst->Write();
+  proton_v2_pT->Write();
+  file->Write();
+
+  delete proton_pT_dst;
+  delete proton_v2_pT;
+  delete file;
+
+  //pTdst->Write();
+  //delete pTdst;
+}
+//-----------
+int Centrality( double impact_parameter)
+{
+  int central=1000;
+  for(int i=1 ; i<=100 ; i++)
+  {
+    if(impact_parameter<=sqrt(i/100.)*2.*pow(ANUMBER,1./3.)*1.124)
+    {
+      central = i-1;
+      return central;
+    }
+  }
+  return central;
+}
+
+//-------elliptic flow-----
+double EllipticFlow(TVector3 PP)
+{
+  if((PP.Px()==0.)&&(PP.Py()!=0.)) {return -1.;}
+  else if((PP.Px()!=0.)&&(PP.Py()==0.)) {return 1.;}
+  else if((PP.Px()==0.)&&(PP.Py()==0.)) {return 0.;}
+  else {return (PP.Px()*PP.Px()-PP.Py()*PP.Py())/PP.Perp2();}
+}
+

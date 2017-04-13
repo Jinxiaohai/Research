@@ -1,0 +1,12 @@
+#+IsPickleJob = true
+#requirements = TARGET.IsPickleSlot
+Universe     = vanilla
+Notification = Error
+Initialdir   = /home/jinxiaohai/jinxiaohai/fluctuation/code/test_self_zpc
+Executable   = $(Initialdir)/run00.csh
+Arguments    = $(Process)
+Log          = $(Initialdir)/log/job00_$(Process).log	
+Output       = $(Initialdir)/log/job00_$(Process).out
+Error        = $(Initialdir)/log/job00_$(Process).err
+Notify_user  = jinxiaohai@sinap.ac.cn
+Queue 1
