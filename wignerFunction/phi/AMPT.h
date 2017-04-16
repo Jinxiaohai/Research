@@ -1,8 +1,8 @@
 //////////////////////////////////////////////////////////
 // This class has been automatically generated on
-// Thu Mar 30 09:33:34 2017 by ROOT version 6.06/08
+// Fri Apr 14 11:26:01 2017 by ROOT version 6.06/08
 // from TTree AMPT/AMPT DST Tree
-// found on file: file.root
+// found on file: zpc_AfterFluc.root
 //////////////////////////////////////////////////////////
 
 #ifndef AMPT_h
@@ -14,7 +14,7 @@
 
 // Header file for the classes stored in the TTree if any.
 
-const unsigned int MAXMULTI = 30000;
+const unsigned int MAXMULTI = 40000;
 
 class AMPT {
 public :
@@ -73,9 +73,9 @@ AMPT::AMPT(TTree *tree) : fChain(0)
 // if parameter tree is not specified (or zero), connect the file
 // used to generate this class and read the Tree.
    if (tree == 0) {
-      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("file.root");
+      TFile *f = (TFile*)gROOT->GetListOfFiles()->FindObject("zpc_AfterFluc.root");
       if (!f || !f->IsOpen()) {
-         f = new TFile("file.root");
+         f = new TFile("zpc_AfterFluc.root");
       }
       f->GetObject("AMPT",tree);
 

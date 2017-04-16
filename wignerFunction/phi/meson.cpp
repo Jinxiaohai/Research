@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 {
   if (argc != 3) return 0;
   char *inputFile = argv[1];
-  char *outputFile = argv[2];
+  char *PsiFile = argv[2];
   
   TChain *chain = new TChain("AMPT");
   char FileList[1024];
@@ -58,10 +58,10 @@ int main(int argc, char *argv[])
   double dy = 1.;
   double dpt = 0.2;
 
-  ofstream output_data(outputFile);
-  if (!output_data)
+  ifstream inputPsi(PsiFile);
+  if (!inputPsi.good())
     {
-      cerr << "parameter error !" << endl;
+      cerr << "open error !!!" << endl;
       return -1;
     }
   /// data list 的处理方式
@@ -119,29 +119,31 @@ int main(int argc, char *argv[])
   AMPT *ampt = new AMPT(chain);
   unsigned entries = chain->GetEntries();
   if(entries >= 1.e+008) return -1;
+  // cout << entries << endl;
 
   unsigned int tracks = 0;
+  double PHI2 = 0., PHI3 = 0.;
 
   for (unsigned l = 0; l != entries; ++l)
     {
-      /// progress
-      static char str[100] = "#";
-      unsigned int per_entry = 2 * (entries / 100);
-      if (l % per_entry == 0)
-        {
-          const int per = ceil(((static_cast<double>(l))/entries ) * 100);
-          cout << left << "progress:[" << setw(50) << str
-               << "] " << per << "%" << flush;
-          strcat(str, "#");
-          usleep(100000);
-          cout << "\r" << flush;
-          if (per >= 99)
-            {
-              cout << endl;
-              cout << "Long live Chairman Mao." << endl;
-            } 
-        }
-      /// progress
+      // /// progress
+      // static char str[100] = "#";
+      // unsigned int per_entry = 2 * (entries / 100);
+      // if (l % per_entry == 0)
+      //   {
+      //     const int per = ceil(((static_cast<double>(l))/entries ) * 100);
+      //     cout << left << "progress:[" << setw(50) << str
+      //          << "] " << per << "%" << flush;
+      //     strcat(str, "#");
+      //     usleep(100000);
+      //     cout << "\r" << flush;
+      //     if (per >= 99)
+      //       {
+      //         cout << endl;
+      //         cout << "Long live Chairman Mao." << endl;
+      //       } 
+      //   }
+      // /// progress
 
       chain->GetEntry(l);
       tracks = ampt->Event_multi;
@@ -150,48 +152,13 @@ int main(int argc, char *argv[])
        * 这里开始构建参与者
        * 平面角.
        */
-      /// partonic information
-      double partonic_r2, partonic_phi;
-      /// sum r2 partonic sinphi, sum r2 partonic cosphi
-      double sumr2sin2phi, sumr2cos2phi, sumr2sin3phi, sumr2cos3phi, sumr2sin4phi, sumr2cos4phi;
-      /// average r2 partonic sinphi, average r2 partonic cosphi
-      double aver2sin2phi, aver2cos2phi, aver2sin3phi, aver2cos3phi, aver2sin4phi, aver2cos4phi;
-      /// effective tracks
-      unsigned int effectiveTracks = 0;
-      for (unsigned int v = 0; v != tracks; ++v)
-        {
-          ++effectiveTracks;
-          if (ampt->X[v] > 1e-7)
-            {
-              partonic_phi = atan2(ampt->Y[v], ampt->X[v]);
-            }
-          else
-            {
-              partonic_phi = 0.;
-            }
-          partonic_r2 = ampt->X[v]*ampt->X[v] + ampt->Y[v]*ampt->Y[v];
-          sumr2sin2phi += partonic_r2 * sin(2.*partonic_phi);
-          sumr2cos2phi += partonic_r2 * cos(2.*partonic_phi);
-          sumr2sin3phi += partonic_r2 * sin(3.*partonic_phi);
-          sumr2cos3phi += partonic_r2 * cos(3.*partonic_phi);
-          sumr2sin4phi += partonic_r2 * sin(4.*partonic_phi);
-          sumr2cos4phi += partonic_r2 * cos(4.*partonic_phi);
-        }
-      aver2sin2phi = sumr2sin2phi / effectiveTracks;
-      aver2cos2phi = sumr2cos2phi / effectiveTracks;
-      aver2sin3phi = sumr2sin3phi / effectiveTracks;
-      aver2cos3phi = sumr2cos3phi / effectiveTracks;
-      aver2sin4phi = sumr2sin4phi / effectiveTracks;
-      aver2cos4phi = sumr2cos4phi / effectiveTracks;
-
-      double PHI2 = (1./2) * (atan2(aver2sin2phi, aver2cos2phi) + PI);
-      double PHI3 = (1./3) * (atan2(aver2sin3phi, aver2cos3phi) + PI);
-      double PHI4 = (1./4) * (atan2(aver2sin4phi, aver2cos4phi) + PI);
-
+      inputPsi >> PHI2 >> PHI3;
+      double EventNum = 0;
 
       
       for (unsigned t = 0; t != tracks-1; ++t)
         {
+          // cout << ampt->ID[t] << endl;
           if (abs(ampt->ID[t]) == 3)
             {
               for (unsigned w = t+1; w != tracks; ++w)
@@ -199,6 +166,7 @@ int main(int argc, char *argv[])
                   if((ampt->ID[w] == 3 && ampt->ID[t] == -3)
                      || (ampt->ID[w] == -3 && ampt->ID[t] == 3))
                     {
+                      // cout << ampt->ID[w] << endl;
                       double tpx = ampt->Px[t], tpy = ampt->Py[t], tpz = ampt->Pz[t], tmass = ampt->Mass[t];
                       double tx = ampt->X[t], ty = ampt->Y[t], tz = ampt->Z[t], ttime = ampt->Time[t];
                       double tenergy = sqrt(tpx*tpx + tpy*tpy + tpz*tpz + tmass*tmass);
@@ -240,6 +208,7 @@ int main(int argc, char *argv[])
                       double sigmaSquare = (4./3.) * RRMS * RRMS;
 
                       double Fb = G * 8 * exp(-rSquare/sigmaSquare - kSquare*sigmaSquare);
+                      // cout << Fb << endl;
 
                       /// calculate flow
                       double pxval = (tlabmomentum+wlabmomentum).Px();
@@ -247,7 +216,6 @@ int main(int argc, char *argv[])
                       double hadron_phi = atan2(pyval, pxval);
                       double V2 = cos(2.*(hadron_phi-PHI2));
                       double V3 = cos(3.*(hadron_phi-PHI3));
-                      double V4 = cos(4.*(hadron_phi-PHI4));
                       
                       
                       rapidityhist->Fill(rapidity, Fb);
@@ -256,10 +224,11 @@ int main(int argc, char *argv[])
                         {
                           continue;
                         }
-
+                      
+                      EventNum += Fb;
+                      
                       v2SumHistgram->Fill(transpt, V2*Fb);
                       v3SumHistgram->Fill(transpt, V3*Fb);
-                      v4SumHistgram->Fill(transpt, V4*Fb);
                       probablySum->Fill(transpt,   Fb);
                         
                       if (transpt > 1e-7)
@@ -270,6 +239,7 @@ int main(int argc, char *argv[])
                 }//for
             }//out if
         }//for
+      EventNumHist->Fill(EventNum);
     }//for
 
   rapidityhist->Scale(1./entries);
@@ -280,12 +250,14 @@ int main(int argc, char *argv[])
   yield->Scale(1./entries);
   yield->Write();
 
+  EventNumHist->Write();
   v2SumHistgram->Write();
   v3SumHistgram->Write();
-  v4SumHistgram->Write();
   probablySum->Write();
+
+  saveFile->Write();
   
-  output_data.close();
+  inputPsi.close();
   delete chain;
   delete ampt;
   delete saveFile;

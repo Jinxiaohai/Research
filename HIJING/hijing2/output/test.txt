@@ -1,0 +1,7 @@
+ random number seed
+ frame(LAB,CMS), enegy-frame
+ Proj, Targ(A,P,PBAR)
+ A,Z of proj; A,Z of targ
+ number of events
+ Print warning messages (0,1)
+ bmin,bmax

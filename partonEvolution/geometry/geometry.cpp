@@ -1,3 +1,10 @@
+/**
+ * @file   geometry.cpp
+ * @author xiaohai <xiaohaijin@outlook.com>
+ * @date   Fri Apr 14 15:01:16 2017
+ * 
+ * @brief  the file was created to get the epsilon and psi.
+ */
 //root
 #ifdef __CINT__
 #pragma link off all globals;
@@ -156,6 +163,9 @@ int main(int argc, char *argv[])
 void Process(vector<Particle> &particles_proj, vector<Particle> &particles_targ,
              double &e2, double &e3, double &phi2, double &phi3)
 {
+  /// change the value of Withproj and Withtarg to get what you want.
+  /// the value of (Withproj || withtarg) must be true, otherwise, the
+  /// program can not work.
   bool WithProj = true;
   bool WithTarg = true;
   double x_cm = 0.;
