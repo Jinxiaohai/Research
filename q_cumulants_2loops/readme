@@ -1,0 +1,4 @@
+make
+./analysis ../job/melting_200GeV.root test.root
+root -l -b -q calc_flow.C
+root -l calc_integral_flow.C
