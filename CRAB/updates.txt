@@ -1,0 +1,57 @@
+CRAB
+Version 3.0-alpha was posted Nov. 17, 1997
+Corrections/additions to the code will be reported in this file
+________________________________________________________________
+
+Nov. 20, 1997
+"crab.h" edited because:
+1.) decimals were added in format of writing statistical errors to better 
+    facilitate chi-sqaure fits.
+2.) ERROR FIX: 3-d binning was fixed.
+3.) ERROR FIX; The interactions file for pi-pi and k-k were fixed 
+    (WANTI set to zero).
+
+Nov. 22, 1997
+1.) Program prints percentage finished (10,20,30... 100) in calc.s of 
+    numerator and denominator
+
+________________________________________________________________
+
+July 28, 1998
+1.) ERROR FIX: Beta version released, an error in the coulomb routines was 
+    fixed that gave false answers for larger values of the relative momentum 
+    when r was also large.
+
+2.) The projections of the relative momentum for non-identical particles
+    were changed, so that one could calculate k+ vs. k- correlation functions
+    similarly to Lednicky. See file crab_plusminus.cpp for example, where
+    this kind of binning is called.
+
+3.) Version is renamed 3.0-beta.
+
+________________________________________________________________
+
+April 15, 1999
+1.) ERROR FIX: The Reid soft core potential for the l=1 waves was incorrectly 
+    entered. Revised versions of crab_interaction_pp.cpp and 
+    crab_interaction_nn.cpp were added to the distribution.
+
+________________________________________________________________
+
+Dec. 20, 2000
+
+1.) ERROR FIX: The file crab_interaction_lambdap.cpp in the interactions
+    directory had an incorrect mass for the lambda. Thanks to Mike Lisa for
+    pointing this out.
+
+_________________________________________________________________
+
+Feb. 21, 2006
+
+1.) ERROR FIX: Lorentz boost was incorrect if one were doing boost along x-axis
+  but was not doing longitudinally comoving boost. Thanks to Akitomo Enokizono
+  for finding this.
+
+2.) ERROR FIX: subroutine "decompose" (which was not called except for
+  binnings for final printing) had qmag off by factor of 1/2 if using reduced 
+  momentum. Thanks to Paul Chung for finding this. 

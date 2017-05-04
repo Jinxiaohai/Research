@@ -4,11 +4,11 @@ A               ! PROJ
 A               ! TARG
 197             ! IAP (projectile A number)
 79              ! IZP (projectile Z number)
-64              ! IAT (target A number)
-29              ! IZT (target Z number)
-10		! NEVNT (total number of events)
-0               ! BMIN (mininum impact parameter in fm) 
-12		! BMAX (maximum impact parameter in fm, also see below)
+197             ! IAT (target A number)
+79              ! IZT (target Z number)
+1		! NEVNT (total number of events)
+6               ! BMIN (mininum impact parameter in fm) 
+6		! BMAX (maximum impact parameter in fm, also see below)
 4		! ISOFT (D=1): select Default AMPT or String Melting(see below)
 150		! NTMAX: number of timesteps (D=150), see below
 0.2		! DT: timestep in fm (hadron cascade time= DT*NTMAX) (D=0.2)

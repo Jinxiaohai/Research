@@ -16,7 +16,7 @@ int ampt()
   TPad *pad = new TPad("pad", "pad", 0.05, 0.05, 0.95, 0.95);
   pad->Draw();
   pad->cd();
-  ifstream input("../toydata/ampt.dat");
+  ifstream input("../../toydata/ampt.dat");
   const int CellNum = 14;
   double range  = 10.;/// [-10, 10)
   TH2D *scatter = new TH2D("scatter", "scatter", 80, -15, 15, 80, -15, 15);

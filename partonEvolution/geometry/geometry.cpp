@@ -144,12 +144,12 @@ int main(int argc, char *argv[])
         }//event
       input.close();
     }//file
-  cout << "average projectile number ==>  " << partPNum / static_cast<double>(eventCount) << endl;
-  cout << "average target number ==>  " << partTNum / static_cast<double>(eventCount) << endl;
-  cout << "average epsilon2 ==>  " << e2Ave / eventCount << endl;
-  cout << "average epsilon3 ==>  " << e3Ave / eventCount << endl;
-  cout << "average psi2 ==>  " << psi2Ave / eventCount << endl;
-  cout << "average psi3 ==>  " << psi3Ave / eventCount << endl;
+  outputData << "average projectile number ==>  " << partPNum / static_cast<double>(eventCount) << endl;
+  outputData << "average target number ==>  " << partTNum / static_cast<double>(eventCount) << endl;
+  outputData << "average epsilon2 ==>  " << e2Ave / eventCount << endl;
+  outputData << "average epsilon3 ==>  " << e3Ave / eventCount << endl;
+  outputData << "average psi2 ==>  " << psi2Ave / eventCount << endl;
+  outputData << "average psi3 ==>  " << psi3Ave / eventCount << endl;
 
   inputData.close();
   outputData.close();
