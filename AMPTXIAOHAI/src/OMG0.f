@@ -1,9 +1,0 @@
-        FUNCTION OMG0(X)
-        COMMON/HPARNT/HIPR1(100),IHPR2(50),HINT1(100),IHNT2(50)
-        COMMON /BESEL/X4
-        EXTERNAL BK
-        SAVE   
-        X4=HIPR1(32)*SQRT(X)
-        OMG0=HIPR1(32)**2*GAUSS2(BK,X4,X4+20.0,0.01)/96.0
-        RETURN
-        END

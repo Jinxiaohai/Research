@@ -1,6 +1,0 @@
-      SUBROUTINE PYKCUT(MCUT)   
-      COMMON/PYPARS/MSTP(200),PARP(200),MSTI(200),PARI(200) 
-      SAVE /PYPARS/ 
-      MCUT=0    
-      RETURN    
-      END   

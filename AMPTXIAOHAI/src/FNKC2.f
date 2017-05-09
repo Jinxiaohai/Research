@@ -1,6 +1,0 @@
-        FUNCTION FNKC2(X)
-        COMMON/HPARNT/HIPR1(100),IHPR2(50),HINT1(100),IHNT2(50)
-        SAVE   
-        FNKC2=X*EXP(-2.0*X/HIPR1(42))
-        RETURN
-        END
