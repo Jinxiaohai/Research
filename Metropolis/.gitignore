@@ -1,0 +1,20 @@
+# Ignoring files that dont have any extension
+*
+!/**/
+!*.*
+
+# Builds, binaries, executables
+bin/
+build/
+*.o
+
+# Picture files
+*.png
+
+# Data files
+*.txt
+
+# Junk
+.qmake*
+*.user*
+.DS_Store
