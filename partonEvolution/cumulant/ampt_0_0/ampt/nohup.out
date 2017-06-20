@@ -1,0 +1,488 @@
+847640127
+847640127
+ 
+           ##################################################
+           #      AMPT (A Multi-Phase Transport) model      #
+           #          Version 2.26t5b (StringMelting)       #
+           #                3/31/2015                       #
+           ##################################################
+            
+ # Read in NSEED in HIJING at run time (e.g. 20030819):
+ #   read in:  847640127
+
+
+          **************************************************
+          *     |      |       _______      /  ------/     *
+          *   ----- ------     |_____|     /_/     /       *
+          *    |||    /        |_____|      /    / |       *
+          *    /| |  /_/       /_______    /_  /    |      *
+          *   / |     / /     /  /  / |        -------     *
+          *     |    / /|       /  /  |     /     |        *
+          *     |   / /  |     /  /  _|    /   -------     *
+          *                                                *
+          **************************************************
+                                HIJING                      
+                 Heavy Ion Jet INteraction Generator        
+                                  by                        
+                      X. N. Wang  and  M. Gyulassy           
+                       Lawrence Berkeley Laboratory           
+
+
+     MDCY(C221,1)   changed from              1 to              0
+     MDCY(C313,1)   changed from              1 to              0
+     MDCY(C-313,1)  changed from              0 to              0
+     MDCY(C323,1)   changed from              1 to              0
+     MDCY(C-323,1)  changed from              0 to              0
+     MDCY(C311,1)   changed from              1 to              0
+     MDCY(C-311,1)  changed from              0 to              0
+     MDCY(C1114,1)  changed from              1 to              0
+     MDCY(C2114,1)  changed from              1 to              0
+     MDCY(C2214,1)  changed from              1 to              0
+     MDCY(C2224,1)  changed from              1 to              0
+     MDCY(C-1114,1) changed from              0 to              0
+     MDCY(C-2114,1) changed from              0 to              0
+     MDCY(C-2214,1) changed from              0 to              0
+     MDCY(C-2224,1) changed from              0 to              0
+     MDCY(C213,1)   changed from              1 to              0
+     MDCY(C-213,1)  changed from              0 to              0
+     MDCY(C113,1)   changed from              1 to              0
+     MDCY(C223,1)   changed from              1 to              0
+     MDCY(C333,1)   changed from              1 to              0
+     MDCY(C111,1)   changed from              1 to              0
+     MDCY(C310,1)   changed from              1 to              0
+     MDCY(C411,1)   changed from              1 to              0
+     MDCY(C-411,1)  changed from              0 to              0
+     MDCY(C421,1)   changed from              1 to              0
+     MDCY(C-421,1)  changed from              0 to              0
+     MDCY(C431,1)   changed from              1 to              0
+     MDCY(C-431,1)  changed from              0 to              0
+     MDCY(C511,1)   changed from              1 to              0
+     MDCY(C-511,1)  changed from              0 to              0
+     MDCY(C521,1)   changed from              1 to              0
+     MDCY(C-521,1)  changed from              0 to              0
+     MDCY(C531,1)   changed from              1 to              0
+     MDCY(C-531,1)  changed from              0 to              0
+     MDCY(C3122,1)  changed from              1 to              0
+     MDCY(C-3122,1) changed from              0 to              0
+     MDCY(C3112,1)  changed from              1 to              0
+     MDCY(C-3112,1) changed from              0 to              0
+     MDCY(C3212,1)  changed from              1 to              0
+     MDCY(C-3212,1) changed from              0 to              0
+     MDCY(C3222,1)  changed from              1 to              0
+     MDCY(C-3222,1) changed from              0 to              0
+     MDCY(C3312,1)  changed from              1 to              0
+     MDCY(C-3312,1) changed from              0 to              0
+     MDCY(C3322,1)  changed from              1 to              0
+     MDCY(C-3322,1) changed from              0 to              0
+     MDCY(C3334,1)  changed from              1 to              0
+     MDCY(C-3334,1) changed from              0 to              0
+     MDCY(C441,1)   changed from              1 to              0
+     MDCY(C443,1)   changed from              1 to              0
+     MDCY(C413,1)   changed from              1 to              0
+     MDCY(C-413,1)  changed from              0 to              0
+     MDCY(C423,1)   changed from              1 to              0
+     MDCY(C-423,1)  changed from              0 to              0
+     MDCY(C433,1)   changed from              1 to              0
+     MDCY(C-433,1)  changed from              0 to              0
+     MDCY(C4112,1)  changed from              1 to              0
+     MDCY(C-4112,1) changed from              0 to              0
+     MDCY(C4114,1)  changed from              1 to              0
+     MDCY(C-4114,1) changed from              0 to              0
+     MDCY(C4122,1)  changed from              1 to              0
+     MDCY(C-4122,1) changed from              0 to              0
+     MDCY(C4212,1)  changed from              1 to              0
+     MDCY(C-4212,1) changed from              0 to              0
+     MDCY(C4214,1)  changed from              1 to              0
+     MDCY(C-4214,1) changed from              0 to              0
+     MDCY(C4222,1)  changed from              1 to              0
+     MDCY(C-4222,1) changed from              0 to              0
+     MDCY(C4224,1)  changed from              1 to              0
+     MDCY(C-4224,1) changed from              0 to              0
+     MDCY(C4132,1)  changed from              1 to              0
+     MDCY(C-4132,1) changed from              0 to              0
+     MDCY(C4312,1)  changed from              1 to              0
+     MDCY(C-4312,1) changed from              0 to              0
+     MDCY(C4314,1)  changed from              1 to              0
+     MDCY(C-4314,1) changed from              0 to              0
+     MDCY(C4232,1)  changed from              1 to              0
+     MDCY(C-4232,1) changed from              0 to              0
+     MDCY(C4322,1)  changed from              1 to              0
+     MDCY(C-4322,1) changed from              0 to              0
+     MDCY(C4324,1)  changed from              1 to              0
+     MDCY(C-4324,1) changed from              0 to              0
+     MDCY(C4332,1)  changed from              1 to              0
+     MDCY(C-4332,1) changed from              0 to              0
+     MDCY(C4334,1)  changed from              1 to              0
+     MDCY(C-4334,1) changed from              0 to              0
+     MDCY(C551,1)   changed from              1 to              0
+     MDCY(C553,1)   changed from              1 to              0
+     MDCY(C513,1)   changed from              1 to              0
+     MDCY(C-513,1)  changed from              0 to              0
+     MDCY(C523,1)   changed from              1 to              0
+     MDCY(C-523,1)  changed from              0 to              0
+     MDCY(C533,1)   changed from              1 to              0
+     MDCY(C-533,1)  changed from              0 to              0
+     MDCY(C5112,1)  changed from              1 to              0
+     MDCY(C-5112,1) changed from              0 to              0
+     MDCY(C5114,1)  changed from              1 to              0
+     MDCY(C-5114,1) changed from              0 to              0
+     MDCY(C5122,1)  changed from              1 to              0
+     MDCY(C-5122,1) changed from              0 to              0
+     MDCY(C5212,1)  changed from              1 to              0
+     MDCY(C-5212,1) changed from              0 to              0
+     MDCY(C5214,1)  changed from              1 to              0
+     MDCY(C-5214,1) changed from              0 to              0
+     MDCY(C5222,1)  changed from              1 to              0
+     MDCY(C-5222,1) changed from              0 to              0
+     MDCY(C5224,1)  changed from              1 to              0
+     MDCY(C-5224,1) changed from              0 to              0
+          **************************************************
+          *                                                *
+          *         HIJING has been initialized at         *
+          *             Ecm =     200.00 GeV/n             *
+          *                                                *
+          *        for A   (197, 79) + A   (197, 79)       *
+          **************************************************
+  EVENT  1, RUN  1
+ #impact parameter,nlop,ncolt=  9.76611137 0 114
+ In PYINIT: BEAM,TARGET= P               N               
+
+ ******** PYMAXI: summary of differential cross-section maximum search ********
+
+           ==========================================================
+           I                                      I                 I
+           I  ISUB  Subprocess name               I  Maximum value  I
+           I                                      I                 I
+           ==========================================================
+           I                                      I                 I
+           I   11   f + f' -> f + f'              I    4.9718E+00   I
+           I   12   f + fb -> f' + fb'            I    5.7342E-03   I
+           I   13   f + fb -> g + g               I    6.8549E-02   I
+           I   14   f + fb -> g + gamma           I    8.3283E-04   I
+           I   18   f + fb -> gamma + gamma       I    3.3438E-06   I
+           I   28   f + g -> f + g                I    2.2202E+01   I
+           I   29   f + g -> f + gamma            I    7.4919E-03   I
+           I   53   g + g -> f + fb               I    1.9216E-01   I
+           I   68   g + g -> g + g                I    2.5880E+01   I
+           I   81   q + qb -> Q + QB, massive     I    3.6768E-03   I
+           I   82   g + g -> Q + QB, massive      I    1.0604E-01   I
+           I                                      I                 I
+           ==========================================================
+ In PYINIT: BEAM,TARGET= P               P               
+
+ ******** PYMAXI: summary of differential cross-section maximum search ********
+
+           ==========================================================
+           I                                      I                 I
+           I  ISUB  Subprocess name               I  Maximum value  I
+           I                                      I                 I
+           ==========================================================
+           I                                      I                 I
+           I   11   f + f' -> f + f'              I    4.9850E+00   I
+           I   12   f + fb -> f' + fb'            I    5.7342E-03   I
+           I   13   f + fb -> g + g               I    6.8549E-02   I
+           I   14   f + fb -> g + gamma           I    8.9451E-04   I
+           I   18   f + fb -> gamma + gamma       I    3.7609E-06   I
+           I   28   f + g -> f + g                I    2.2202E+01   I
+           I   29   f + g -> f + gamma            I    7.8743E-03   I
+           I   53   g + g -> f + fb               I    1.9216E-01   I
+           I   68   g + g -> g + g                I    2.5880E+01   I
+           I   81   q + qb -> Q + QB, massive     I    3.6768E-03   I
+           I   82   g + g -> Q + QB, massive      I    1.0604E-01   I
+           I                                      I                 I
+           ==========================================================
+ In PYINIT: BEAM,TARGET= N               P               
+
+ ******** PYMAXI: summary of differential cross-section maximum search ********
+
+           ==========================================================
+           I                                      I                 I
+           I  ISUB  Subprocess name               I  Maximum value  I
+           I                                      I                 I
+           ==========================================================
+           I                                      I                 I
+           I   11   f + f' -> f + f'              I    4.9718E+00   I
+           I   12   f + fb -> f' + fb'            I    5.7342E-03   I
+           I   13   f + fb -> g + g               I    6.8549E-02   I
+           I   14   f + fb -> g + gamma           I    8.3283E-04   I
+           I   18   f + fb -> gamma + gamma       I    3.3438E-06   I
+           I   28   f + g -> f + g                I    2.2202E+01   I
+           I   29   f + g -> f + gamma            I    7.4919E-03   I
+           I   53   g + g -> f + fb               I    1.9216E-01   I
+           I   68   g + g -> g + g                I    2.5880E+01   I
+           I   81   q + qb -> Q + QB, massive     I    3.6768E-03   I
+           I   82   g + g -> Q + QB, massive      I    1.0604E-01   I
+           I                                      I                 I
+           ==========================================================
+ In PYINIT: BEAM,TARGET= N               N               
+
+ ******** PYMAXI: summary of differential cross-section maximum search ********
+
+           ==========================================================
+           I                                      I                 I
+           I  ISUB  Subprocess name               I  Maximum value  I
+           I                                      I                 I
+           ==========================================================
+           I                                      I                 I
+           I   11   f + f' -> f + f'              I    4.9850E+00   I
+           I   12   f + fb -> f' + fb'            I    5.7342E-03   I
+           I   13   f + fb -> g + g               I    6.8549E-02   I
+           I   14   f + fb -> g + gamma           I    7.5542E-04   I
+           I   18   f + fb -> gamma + gamma       I    2.8969E-06   I
+           I   28   f + g -> f + g                I    2.2202E+01   I
+           I   29   f + g -> f + gamma            I    7.0693E-03   I
+           I   53   g + g -> f + fb               I    1.9216E-01   I
+           I   68   g + g -> g + g                I    2.5880E+01   I
+           I   81   q + qb -> Q + QB, massive     I    3.6768E-03   I
+           I   82   g + g -> Q + QB, massive      I    1.0604E-01   I
+           I                                      I                 I
+           ==========================================================
+ DF: nsg,nptot= 1435 2466
+ DF: mean,width(fm)=     0.203     2.546     0.475     3.152
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1       1.629      -1.273     177.173
+         2       1.644       2.308     166.422
+         3      -1.171      -1.269     165.738
+         4      -1.252       1.973     165.256
+ DF: moved  1916 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39398.832 1435  9.76611137
+  
+  EVENT  2, RUN  1
+ #impact parameter,nlop,ncolt=  8.32137775 0 240
+ DF: nsg,nptot= 1964 3648
+ DF: mean,width(fm)=    -0.284     3.054    -0.144     3.659
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1       1.443      -2.051     299.606
+         2      -1.926      -2.186     285.344
+         3       1.386       1.905     264.309
+         4      -1.968       1.867     260.083
+ DF: moved  3000 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39409.3438 1964  8.32137775
+  
+  EVENT  3, RUN  1
+ #impact parameter,nlop,ncolt=  11.3566608 0 35
+ DF: nsg,nptot= 681 687
+ DF: mean,width(fm)=     0.410     1.360    -0.430     2.213
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -0.329       0.897      66.362
+         2       0.996       0.901      44.969
+         3       1.367      -1.898      37.344
+         4      -0.293      -1.422      33.347
+ DF: moved  366 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39392.0977 681  11.3566608
+  
+  EVENT  4, RUN  1
+ #impact parameter,nlop,ncolt=  7.48582125 0 267
+ DF: nsg,nptot= 2000 3783
+ DF: mean,width(fm)=     0.162     3.176    -0.191     3.383
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -1.751      -2.266     264.430
+         2       1.862      -2.157     261.235
+         3       1.958       1.946     252.593
+         4      -1.597       1.686     230.418
+ DF: moved  3222 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39419.5273 2000  7.48582125
+  
+  EVENT  5, RUN  1
+ #impact parameter,nlop,ncolt=  10.5587797 0 105
+ DF: nsg,nptot= 1322 2158
+ DF: mean,width(fm)=    -0.298     2.206    -0.560     2.492
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -1.539      -2.202     165.505
+         2       0.929      -2.062     130.772
+         3       1.010       0.729     129.375
+         4      -1.496       0.783     102.285
+ DF: moved  1577 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39398.6133 1322  10.5587797
+  
+  EVENT  6, RUN  1
+ #impact parameter,nlop,ncolt=  8.9411459 0 170
+ DF: nsg,nptot= 1614 2887
+ DF: mean,width(fm)=    -0.091     2.978    -0.029     3.515
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -1.874       1.971     245.468
+         2       1.560       1.763     236.060
+         3       1.582      -1.870     233.431
+         4      -1.798      -1.771     222.695
+ DF: moved  2298 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39409.8789 1614  8.9411459
+  
+  EVENT  7, RUN  1
+ #impact parameter,nlop,ncolt=  11.4612389 0 49
+ DF: nsg,nptot= 848 1105
+ DF: mean,width(fm)=    -0.280     1.988     0.191     2.248
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1       0.779      -1.217      87.293
+         2      -1.327      -1.098      70.338
+         3      -1.544       1.489      66.684
+         4       0.881       1.390      54.074
+ DF: moved  753 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39390.6172 848  11.4612389
+  
+  EVENT  8, RUN  1
+ #impact parameter,nlop,ncolt=  9.16494656 0 179
+ DF: nsg,nptot= 1547 2740
+ DF: mean,width(fm)=    -0.041     2.693    -0.068     2.956
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1       1.426      -1.705     188.473
+         2      -1.597      -1.821     179.092
+         3       1.490       1.786     176.071
+         4      -1.805       1.633     174.143
+ DF: moved  2218 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39390.9062 1547  9.16494656
+  
+  EVENT  9, RUN  1
+ #impact parameter,nlop,ncolt=  9.72161293 0 117
+ DF: nsg,nptot= 1348 2283
+ DF: mean,width(fm)=    -0.601     2.588    -0.301     2.690
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1       0.878      -2.042     177.817
+         2      -2.141      -1.908     146.061
+         3       0.864       1.202     141.893
+         4      -2.030       1.368     117.044
+ DF: moved  1818 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39371.4531 1348  9.72161293
+  
+  EVENT  10, RUN  1
+ #impact parameter,nlop,ncolt=  4.97223091 0 542
+ DF: nsg,nptot= 3421 7017
+ DF: mean,width(fm)=    -0.005     4.476    -0.549     4.243
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -2.618      -2.936     496.481
+         2       2.305       1.919     490.395
+         3      -2.497       1.924     488.914
+         4       2.573      -3.003     455.536
+ DF: moved  6293 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39436.832 3421  4.97223091
+  
+  EVENT  11, RUN  1
+ #impact parameter,nlop,ncolt=  10.7257643 0 71
+ DF: nsg,nptot= 906 1250
+ DF: mean,width(fm)=     0.150     1.764    -0.225     2.398
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -0.886      -1.659      85.368
+         2       1.233       1.110      83.719
+         3       1.089      -1.616      78.175
+         4      -0.853       0.970      67.088
+ DF: moved  791 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39394.8086 906  10.7257643
+  
+  EVENT  12, RUN  1
+ #impact parameter,nlop,ncolt=  10.4984636 0 70
+ DF: nsg,nptot= 1136 1725
+ DF: mean,width(fm)=    -0.548     2.389     0.438     2.806
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1       0.643       1.892     110.667
+         2       0.798      -1.289     110.350
+         3      -1.932       2.059     104.653
+         4      -1.866      -1.122      92.666
+ DF: moved  1330 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39382.0938 1136  10.4984636
+  
+  EVENT  13, RUN  1
+ #impact parameter,nlop,ncolt=  6.95126772 0 363
+ DF: nsg,nptot= 2408 4755
+ DF: mean,width(fm)=    -0.074     3.416    -0.193     4.199
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -2.242       2.360     381.700
+         2       1.887      -2.657     352.859
+         3       1.854       1.993     325.629
+         4      -1.891      -2.411     293.884
+ DF: moved  4096 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39433.5898 2408  6.95126772
+  
+  EVENT  14, RUN  1
+ #impact parameter,nlop,ncolt=  7.07893229 0 388
+ DF: nsg,nptot= 2528 5088
+ DF: mean,width(fm)=    -0.474     3.718    -0.513     4.074
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -2.630       1.818     372.698
+         2       1.522       1.980     363.231
+         3      -2.535      -2.932     356.592
+         4       1.531      -2.887     342.393
+ DF: moved  4515 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39456.4648 2528  7.07893229
+  
+  EVENT  15, RUN  1
+ #impact parameter,nlop,ncolt=  10.1269493 0 107
+ DF: nsg,nptot= 1225 1964
+ DF: mean,width(fm)=     0.202     2.449     0.462     2.870
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -1.241      -1.389     139.340
+         2       1.556      -1.203     127.299
+         3       1.615       2.122     126.028
+         4      -1.080       2.091     101.260
+ DF: moved  1561 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39393.9102 1225  10.1269493
+  
+  EVENT  16, RUN  1
+ #impact parameter,nlop,ncolt=  10.5528097 0 42
+ DF: nsg,nptot= 910 1223
+ DF: mean,width(fm)=    -0.067     3.474     0.050     2.202
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -1.494      -1.361     123.360
+         2       1.405      -1.430     123.299
+         3       1.608       1.236      97.838
+         4      -1.555       1.231      65.502
+ DF: moved  848 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39383.543 910  10.5528097
+  
+  EVENT  17, RUN  1
+ #impact parameter,nlop,ncolt=  2.20764518 0 980
+ DF: nsg,nptot= 4971 10698
+ DF: mean,width(fm)=    -0.217     4.842    -0.297     4.733
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -3.061      -3.139     722.700
+         2       2.592      -3.152     704.764
+         3       2.650       2.498     699.250
+         4      -3.027       2.565     686.735
+ DF: moved  9866 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39565.5039 4971  2.20764518
+  
+  EVENT  18, RUN  1
+ #impact parameter,nlop,ncolt=  5.42236662 0 608
+ DF: nsg,nptot= 3346 6909
+ DF: mean,width(fm)=     0.040     4.199     0.114     3.873
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1      -2.351      -2.149     455.123
+         2      -2.409       2.367     450.567
+         3       2.474       2.315     411.482
+         4       2.550      -2.077     397.390
+ DF: moved  6261 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39470.1914 3346  5.42236662
+  
+  EVENT  19, RUN  1
+ #impact parameter,nlop,ncolt=  4.90656137 0 585
+ DF: nsg,nptot= 3724 7760
+ DF: mean,width(fm)=    -0.362     4.042     0.198     4.432
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1       2.016       2.814     542.473
+         2      -2.749       2.827     536.398
+         3      -2.786      -2.345     528.885
+         4       2.092      -2.513     518.726
+ DF: moved  7040 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39470.5078 3724  4.90656137
+  
+  EVENT  20, RUN  1
+ #impact parameter,nlop,ncolt=  1.4910934 0 1004
+  in HJANA1 
+  total number of partons =  421
+  total number of gluons =  402
+  number of independent strings =  14
+  in HJANA2 
+  total number of partons =  4037
+  total number of gluons =  0
+  number of independent strings =  2113
+ DF: nsg,nptot= 4929 10596
+ DF: mean,width(fm)=    -0.097     5.019     0.002     4.861
+ DF: cluster#    x/fm        y/fm       Et/GeV
+         1       2.923       2.873     724.040
+         2       2.931      -2.834     699.415
+         3      -3.013       2.796     663.983
+         4      -3.015      -2.766     645.897
+ DF: moved  9852 partons
+ satisfied:EATT(GeV),NATT,B(fm)=  39504.4297 4929  1.4910934
+  
+A131
+#  AMPT started at  Sat May 6 00:21:03 CST 2017
+#  AMPT Program finished at  Sat May 6 00:26:50 CST 2017
