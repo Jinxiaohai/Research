@@ -1,0 +1,8 @@
+ 2 * 1 ->d+ 4 (regular d prodn)    @evt# 166 @nt= 43
+  d+ 4 ->BB (regular d destrn) @evt# 166 @nt= 50 lb1,2= 2 2
+ 1 * 2 ->d+ 4 (regular d prodn)    @evt# 200 @nt= 58
+ 1 * 9 ->d+ 5 (regular d prodn)    @evt# 482 @nt= 33
+  d+ 5 (regular d M elastic) @evt# 482 @nt= 35 lb1,2= 5 42
+  d+ 5 (regular d M elastic) @evt# 482 @nt= 36 lb1,2= 5 42
+  d+ 3 (regular d M elastic) @evt# 482 @nt= 40 lb1,2= 42 3
+  d+ 3 (regular d M elastic) @evt# 482 @nt= 43 lb1,2= 42 3
